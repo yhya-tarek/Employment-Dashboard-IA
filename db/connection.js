@@ -4,6 +4,7 @@ const connection = mysql.createConnection({
   user: "root",
   password: "",
   database: "employee-dashboard-db",
+  prot: "3306",
 });
 
 connection.connect((err) => {
