@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 02:32 PM
+-- Generation Time: Mar 31, 2023 at 05:43 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -32,7 +32,8 @@ CREATE TABLE `job` (
   `position` varchar(50) NOT NULL,
   `Description` varchar(10000) NOT NULL,
   `offer` int(11) NOT NULL,
-  `max-candidate-number` int(11) NOT NULL
+  `max-candidate-number` int(11) NOT NULL,
+  `creation_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,7 +68,8 @@ CREATE TABLE `qualification` (
 CREATE TABLE `request_job` (
   `user_id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
-  `response` enum('approved','declined','no response yet') NOT NULL
+  `response` enum('approved','declined','no response yet') NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,7 +97,8 @@ CREATE TABLE `user` (
   `phone` int(11) NOT NULL,
   `status` enum('active','in-active') NOT NULL,
   `type` enum('admin','applicant') NOT NULL,
-  `image_url` text NOT NULL
+  `image_url` text NOT NULL,
+  `bio` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
