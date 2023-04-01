@@ -1,14 +1,10 @@
 const connection = require("./db/connection");
 const express = require("express");
+const applicant = require("./routes/applicant");
 app = express();
 
-const start = async () => {
-  try {
-    await connection();
-    app.listen(5000, console.log("server is listening"));
-  } catch (error) {
-    console.log(error);
-  }
-};
+app.use(express.json());
 
-start();
+app.use("/applicant", applicant);
+
+app.listen(5000, console.log("server is listening"));
