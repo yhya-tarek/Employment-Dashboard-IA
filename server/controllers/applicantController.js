@@ -11,29 +11,29 @@ module.exports = {
 
   sendRequest: (req, res) => {
     const sql = `select * from request_job where user_id = ${req.body.user_id} and job_id = ${req.body.job_id}`;
-    const check = connection.query(sql, (err, result, fields) => {
-      if (err) return res.json(err);
+    connection.query(sql, (err, result, fields) => {
+      if (err) {
+        return res.json(err);
+      } else if (!result[0]) {
+        const date = new Date();
+        const sql =
+          "INSERT INTO request_job (`user_id`,`job_id`,`response`,`date`) VALUES (?)";
+        const values = [
+          req.body.user_id,
+          req.body.job_id,
+          3,
+          date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
+        ];
+        connection.query(sql, [values], (err, data) => {
+          if (err) return res.json(err);
+          return res.status(201).json(data);
+        });
+      } else {
+        return res
+          .status(400)
+          .json({ msg: "you have already requested this job" });
+      }
     });
-    console.log(req.body.job_id);
-    if (check.result === undefined) {
-      const date = new Date();
-      const sql =
-        "INSERT INTO request_job (`user_id`,`job_id`,`response`,`date`) VALUES (?)";
-      const values = [
-        req.body.user_id,
-        req.body.job_id,
-        3,
-        date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
-      ];
-      connection.query(sql, [values], (err, data) => {
-        if (err) return res.json(err);
-        return res.status(201).json(data);
-      });
-    } else {
-      return res
-        .status(400)
-        .json({ msg: "you have already requested this job" });
-    }
   },
 
   deleteRequest: (req, res) => {
