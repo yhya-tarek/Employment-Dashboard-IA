@@ -9,7 +9,6 @@ const authLogin = (req, res, next) => {
 
 const authRole = (type) => {
   return (req, res, next) => {
-    console.log(req.session.type);
     if (req.session.type !== type) {
       res.status(401);
       return res.send("Not allowed");
