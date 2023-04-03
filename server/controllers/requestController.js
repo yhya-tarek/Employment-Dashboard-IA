@@ -36,38 +36,23 @@ module.exports = {
     });
   },
 
+  respondToRequest: (req, res) => {
+    const { user_id, job_id } = req.params;
+    const newData = req.body;
+    const sql = `update request_job set response = "${newData.response}" where user_id = ${user_id} and job_id = ${job_id}`;
+    connection.query(sql, (err) => {
+      if (err) {
+        res.status(400).json({ msg: err.sqlMessage });
+      } else {
+        res.status(200).json({ msg: "updated successfully" });
+      }
+    });
+  },
+
   deleteRequest: (req, res) => {
     const user_id = req.params.user_id;
     const job_id = req.params.job_id;
     const sql = `DELETE FROM request_job WHERE user_id = ${user_id} and job_id = ${job_id}`;
-    connection.query(sql, (err, data) => {
-      if (err) return res.json(err);
-      return res.json(data);
-    });
-  },
-
-  getJobs: (req, res) => {
-    const sql = ` SELECT *
-                  FROM job
-                  INNER JOIN job_qualifications 
-                      ON job.job_id=job_qualifications.job_id
-                  INNER JOIN qualification 
-                      ON job_qualifications.qualification_id=qualification.qualification_id`;
-    connection.query(sql, (err, data) => {
-      if (err) return res.json(err);
-      return res.json(data);
-    });
-  },
-
-  getJob: (req, res) => {
-    const { id } = req.params;
-    const sql = ` SELECT *
-                  FROM job
-                  INNER JOIN job_qualifications 
-                      ON job.job_id=job_qualifications.job_id
-                  INNER JOIN qualification 
-                      ON job_qualifications.qualification_id=qualification.qualification_id
-                      where job.job_id = ${id}`;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
       return res.json(data);

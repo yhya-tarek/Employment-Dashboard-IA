@@ -1,30 +1,25 @@
-const authUser = (req, res, next) =>
-{
-    if (req.headers.user == null)
-    {
-        res.status(403)
-        return res.send('You need to sign in')
+const authLogin = (req, res, next) => {
+  if (!req.session.Email) {
+    res.status(401);
+    return res.send("You need to sign in");
+  }
+
+  next();
+};
+
+const authRole = (type) => {
+  return (req, res, next) => {
+    console.log(req.session.type);
+    if (req.session.type !== type) {
+      res.status(401);
+      return res.send("Not allowed");
     }
 
-    next()
-}
-
-const authRole = (role) =>
-{
-    return (req, res, next) =>
-    {
-        console.log(req.role);
-        if (req.headers.role !== role)
-        {
-            res.status(401)
-            return res.send('Not allowed')
-        }
-
-        next()
-    }
-}
+    next();
+  };
+};
 
 module.exports = {
-    authUser,
-    authRole
-}
+  authLogin,
+  authRole,
+};

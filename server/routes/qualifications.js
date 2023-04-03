@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { authRole, authUser } = require("../middleware/Auth");
+const { authRole, authLogin } = require("../middleware/Auth");
 const {
   getQualifications,
   createQualification,
@@ -8,18 +8,18 @@ const {
   deleteQualification,
 } = require("../controllers/qualificationController");
 
-router.get("/", getQualifications);
+router.get("/", authLogin, getQualifications);
 
 // CREATE QUALIFICATION
-router.post("/", authRole("1"), authUser, createQualification);
+router.post("/", authLogin, authRole("admin"), createQualification);
 
 //GET SPECIFIC QUALIFICATION
-router.get("/:id", getQualification);
+router.get("/:id", authLogin, getQualification);
 
 //UPDATE QUALIFICATION
-router.put("/:id", authRole("1"), authUser, updateQualification);
+router.put("/:id", authLogin, authRole("admin"), updateQualification);
 
 // DELETE QUALIFICATION
-router.delete("/:id", authRole("1"), authUser, deleteQualification);
+router.delete("/:id", authLogin, authRole("admin"), deleteQualification);
 
 module.exports = router;

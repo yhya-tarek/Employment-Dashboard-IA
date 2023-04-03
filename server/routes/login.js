@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const connection = require("../db/connection")();
-const bcrypt = require("bcrypt");
 const { loginAuth } = require("../controllers/loginController");
 
 // router.get('/', (req, res) =>
@@ -37,6 +36,6 @@ const { loginAuth } = require("../controllers/loginController");
 //         })
 
 // });
-router.get("/", loginAuth);
+router.post("/", loginAuth);
 
 module.exports = router;

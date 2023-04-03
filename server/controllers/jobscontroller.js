@@ -1,28 +1,56 @@
 const connection = require("../db/connection")();
 
 module.exports = {
+  // getJobs: (req, res) => {
+  //   connection.query("select * from job", (err, result, fields) => {
+  //     res.json(result);
+  //   });
+  // },
+
+  // getJob: (req, res) => {
+  //   const { id } = req.params;
+  //   connection.query(
+  //     "select * from job where ? ",
+  //     { job_id: id },
+  //     (err, result, fields) => {
+  //       if (result[0]) {
+  //         res.json(result[0]);
+  //       } else {
+  //         res.statusCode = 404;
+  //         res.json({
+  //           message: "job not found",
+  //         });
+  //       }
+  //     }
+  //   );
+  // },
+
   getJobs: (req, res) => {
-    connection.query("select * from job", (err, result, fields) => {
-      res.json(result);
+    const sql = ` SELECT *
+                  FROM job
+                  INNER JOIN job_qualifications 
+                      ON job.job_id=job_qualifications.job_id
+                  INNER JOIN qualification 
+                      ON job_qualifications.qualification_id=qualification.qualification_id`;
+    connection.query(sql, (err, data) => {
+      if (err) return res.json(err);
+      return res.json(data);
     });
   },
 
   getJob: (req, res) => {
     const { id } = req.params;
-    connection.query(
-      "select * from job where ? ",
-      { job_id: id },
-      (err, result, fields) => {
-        if (result[0]) {
-          res.json(result[0]);
-        } else {
-          res.statusCode = 404;
-          res.json({
-            message: "job not found",
-          });
-        }
-      }
-    );
+    const sql = ` SELECT *
+                  FROM job
+                  INNER JOIN job_qualifications 
+                      ON job.job_id=job_qualifications.job_id
+                  INNER JOIN qualification 
+                      ON job_qualifications.qualification_id=qualification.qualification_id
+                      where job.job_id = ${id}`;
+    connection.query(sql, (err, data) => {
+      if (err) return res.json(err);
+      return res.json(data);
+    });
   },
 
   createJob: (req, res) => {
@@ -45,12 +73,7 @@ module.exports = {
                 Description: newData.Description,
                 offer: newData.offer,
                 max_candidate_number: newData.max_candidate_number,
-                creation_date:
-                  date.getFullYear() +
-                  "-" +
-                  date.getMonth() +
-                  "-" +
-                  date.getDay(),
+                creation_date: date,
               },
               (err, result, fields) => {
                 if (err) {

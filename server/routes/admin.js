@@ -1,39 +1,20 @@
 const router = require("express").Router();
-const {
-  getApplicants,
-  addNewUser,
-  updateUser,
-  deleteUser,
-  updateResponse,
-  getRequests,
-  createSkills,
-  getSkills,
-  getSkill,
-  deleteSkill,
-} = require("../controllers/adminController");
+const skill = require("../routes/skill");
+const request = require("../routes/requset");
+const jobs = require("../routes/jobs");
+const user = require("../routes/user");
+const qualifications = require("../routes/qualifications");
 
 //* fucntion read all applicant from DB
-router.get("/", getApplicants);
 
-//* fucntion add new applicant to DB
-router.post("/", addNewUser);
+router.use("/user", user);
 
-//* change(update) status of applicant in DB
-router.put("/:user_id", updateUser);
+router.use("/qualifications", qualifications);
 
-//* delete the row of employ id from DB
-router.delete("/:user_id", deleteUser);
+router.use("/request", request);
 
-router.get("/requests", getRequests);
+router.use("/jobs", jobs);
 
-router.put("/requests/:user_id&:job_id", updateResponse);
-
-router.get("/skill", getSkills);
-
-router.get("/skill/:skill_id", getSkill);
-
-router.post("/skill", createSkills);
-
-router.delete("/skill/:skill_id", deleteSkill);
+router.use("/skills", skill);
 
 module.exports = router;

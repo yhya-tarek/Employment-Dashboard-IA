@@ -10,10 +10,9 @@ module.exports = {
         res.json(err);
       } else if (result[0]) {
         try {
-          if (
-            /*bcrypt.compare(data.password, result[0].password)*/ data.password ===
-            result[0].password
-          ) {
+          if (bcrypt.compare(data.password, result[0].password)) {
+            req.session.Email = data.Email;
+            req.session.type = result[0].type;
             return res.status(200).json({ authorized: true });
           } else {
             return res.status(401).json({ authorized: false });
