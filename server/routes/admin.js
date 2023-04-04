@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const skill = require("../routes/skill");
-const request = require("../routes/requset");
+const request = require("../routes/request");
 const jobs = require("../routes/jobs");
 const user = require("../routes/user");
 const qualifications = require("../routes/qualifications");

@@ -8,6 +8,15 @@ import Pop from "./Pop";
 import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
 
+const fakedata = [
+  {
+    id: 54,
+    title: "lksjfslf",
+    name: "kfjsl",
+    desc: "ksjflsfjlksjf",
+  },
+];
+
 const Find = () => {
   return (
     <>

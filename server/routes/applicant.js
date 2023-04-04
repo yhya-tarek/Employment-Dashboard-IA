@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const request = require("../routes/requset");
+const request = require("../routes/request");
 const jobs = require("../routes/jobs");
 
 router.use("/request", request);
