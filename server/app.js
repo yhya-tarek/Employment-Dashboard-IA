@@ -2,6 +2,7 @@ const express = require("express");
 const applicant = require("./routes/applicant");
 const admin = require("./routes/admin");
 const login = require("./routes/login");
+const logout = require("./routes/logout");
 const jobs = require("./routes/jobs");
 const { authLogin, authRole } = require("./middleware/Auth");
 const cors = require("cors");
@@ -26,6 +27,8 @@ app.use("/applicant", applicant);
 app.use("/admin", authLogin, authRole("admin"), admin);
 
 app.use("/login", login);
+
+app.use("/logout", logout);
 
 app.use("/jobs", jobs);
 

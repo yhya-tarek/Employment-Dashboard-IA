@@ -1,4 +1,4 @@
-import "../style/Login.css";
+// import "../style/Login.css";
 import { Header } from "./shared/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,10 @@ import { useState, useEffect } from "react";
 
 export const Loginpage = () => {
   const navigate = useNavigate();
+  const win = window.sessionStorage;
+  if (win.getItem("auth")) {
+    navigate("/");
+  }
   const [loginForm, setLoginForm] = useState({
     Email: "",
     password: "",
@@ -20,8 +24,9 @@ export const Loginpage = () => {
           password: loginForm.password,
         })
         .then((response) => {
-          console.log(response);
           if (response.data.authorized) {
+            win.setItem("name", response.data.user.name);
+            win.setItem("auth", response.data.user.authorized);
             navigate("/");
           } else {
           }

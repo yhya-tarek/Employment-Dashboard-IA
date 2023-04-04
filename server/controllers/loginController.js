@@ -14,7 +14,8 @@ module.exports = {
           if (await bcrypt.compare(data.password, result[0].password)) {
             req.session.Email = data.Email;
             req.session.type = result[0].type;
-            return res.status(200).json({ authorized: true });
+            req.session.name = result[0].name;
+            return res.status(200).json({ user: result[0], authorized: true });
           } else {
             return res.status(401).json({
               msg: "Incorrect Email or password",
@@ -29,5 +30,8 @@ module.exports = {
       }
       res.end();
     });
+  },
+  logOut: () => {
+    req.session.destroy();
   },
 };
