@@ -18,12 +18,7 @@ module.exports = {
         const date = new Date();
         const sql =
           "INSERT INTO request_job (`user_id`,`job_id`,`response`,`date`) VALUES (?)";
-        const values = [
-          req.body.user_id,
-          req.body.job_id,
-          3,
-          date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
-        ];
+        const values = [req.body.user_id, req.body.job_id, 3, date];
         connection.query(sql, [values], (err, data) => {
           if (err) return res.json(err);
           return res.status(201).json(data);

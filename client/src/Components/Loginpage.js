@@ -25,8 +25,10 @@ export const Loginpage = () => {
         })
         .then((response) => {
           if (response.data.authorized) {
+            console.log(response.data);
             win.setItem("name", response.data.user.name);
-            win.setItem("auth", response.data.user.authorized);
+            win.setItem("id", response.data.user.user_id);
+            win.setItem("auth", response.data.authorized);
             navigate("/");
           } else {
           }

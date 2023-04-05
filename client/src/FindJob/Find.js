@@ -5,19 +5,92 @@ import tesla from "../assets/tesla.jpg";
 import amazon from "../assets/amazon.jpg";
 import { Link } from "react-router-dom";
 import Pop from "./Pop";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
+import { useNavigate } from "react-router-dom";
 
-const fakedata = [
-  {
-    id: 54,
-    title: "lksjfslf",
-    name: "kfjsl",
-    desc: "ksjflsfjlksjf",
-  },
-];
+// const fakedata = [
+//   {
+//     id: 54,
+//     title: "lksjfslf",
+//     name: "kfjsl",
+//     desc: "ksjflsfjlksjf",
+//   },
+// ];
 
 const Find = () => {
+  const [jobs, setJobs] = useState([]);
+
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const result = [];
+
+  const submitRequist = (e, job_id) => {
+    e.preventDefault();
+    try {
+      if (window.sessionStorage.getItem("id")) {
+        axios
+          .post("http://localhost:5000/applicant/request", {
+            job_id: job_id,
+            user_id: window.sessionStorage.getItem("id"),
+            withCredentials: true,
+          })
+          .then((response) => {
+            if (response) {
+              console.log(response);
+            }
+          })
+          .catch((err) => console.log("you have already requested this job"));
+      } else {
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    // axios.withCredentials = true;
+    axios
+      .get("http://localhost:5000/applicant/jobs")
+      .then((response) => {
+        if (response.data) {
+          setJobs(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        // setError(error.response.data.msg);
+      });
+  }, []);
+
+  jobs.forEach((currentValue, index, arr) => {
+    result.push(
+      <div className="job_card">
+        <div className="job_name">
+          <img src={amazon} alt="" className="job-profile" />
+          <div className="job_detail">
+            <h4>{currentValue.companyName}</h4>
+            <h3>{currentValue.position}</h3>
+            <p>{currentValue.Description}</p>
+          </div>
+        </div>
+        {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
+        <Pop data={currentValue}></Pop>
+
+        <button
+          type="submit"
+          onClick={(event) => submitRequist(event, currentValue.job_id)}
+          className="viewButton"
+        >
+          Request
+          {/* <Link> Request </Link> */}
+        </button>
+      </div>
+    );
+  });
+
   return (
     <>
       <Header></Header>
@@ -53,81 +126,7 @@ const Find = () => {
 
           <section className="job_list" id="jobs">
             {/* <Link to={"/jobdetails" } > */}
-            <div className="job_card">
-              <div className="job_name">
-                <img src={amazon} alt="" className="job-profile" />
-                <div className="job_detail">
-                  <h4>Amazon</h4>
-                  <h3>Infrastructure</h3>
-                  <p>
-                    looking for an experienced UI/UX designer for ongoing
-                    project . it will work with an existing SCRUM team for this
-                    project
-                  </p>
-                </div>
-              </div>
-              {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
-              <Pop></Pop>
-              <button className="viewButton">
-                <Link> Request </Link>
-              </button>
-            </div>
-
-            {/* // </Link>  */}
-
-            <div className="job_card">
-              <div className="job_name">
-                <img className="job-profile" alt="" src={tesla} />
-                <div className="job_detail">
-                  <h4>Tesla</h4>
-                  <h3>Infrastructure</h3>
-                  <p>
-                    lorem lorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    lorem lorem lorem lorem lorem lorem lorem lorem{" "}
-                  </p>
-                </div>
-              </div>
-
-              {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
-              <Pop></Pop>
-              <button className="viewButton">
-                <Link> Request </Link>
-              </button>
-            </div>
-
-            <div className="job_card">
-              <div className="job_name">
-                <img className="job-profile" alt="" src={tesla} />
-                <div className="job_detail">
-                  <h4>Tesla</h4>
-                  <h3>Infrastructure</h3>
-                  <p>
-                    lorem lorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    loremlorem lorem lorem loremlorem lorem lorem loremlorem
-                    lorem lorem loremlorem lorem lorem loremlorem lorem lorem
-                    lorem lorem lorem lorem lorem lorem lorem lorem{" "}
-                  </p>
-                </div>
-              </div>
-
-              {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
-              <Pop></Pop>
-              <button className="viewButton">
-                <Link> Request </Link>
-              </button>
-            </div>
+            <div>{result}</div>
           </section>
         </div>
         <div className="Footer-find">

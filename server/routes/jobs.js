@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { authRole, authLogin } = require("../middleware/Auth");
+const requests = require("../routes/request");
 const {
   createJob,
   getJobs,
@@ -8,13 +9,15 @@ const {
   deleteJob,
 } = require("../controllers/jobscontroller");
 
+router.use("/requests", requests);
+
 router.get("/", getJobs);
 
 // CREATE JOB
-router.post("/", authLogin, authRole("admin"), createJob);
+router.post("/", createJob);
 
 //GET SPECIFIC JOB
-router.get("/:id", getJob);
+router.get("/:position", getJob);
 
 //UPDATE JOB
 router.put("/:id", authLogin, authRole("admin"), updateJob);

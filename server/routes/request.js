@@ -12,7 +12,7 @@ const {
 router.get("/", authLogin, authRole("admin"), getRequests);
 
 //CREATE REQUEST
-router.post("/", authLogin, sendRequest);
+router.post("/", sendRequest);
 
 //RESPOND TO A REQUEST
 router.put("/:user_id&:job_id", authLogin, authRole("admin"), respondToRequest);

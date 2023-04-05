@@ -34,19 +34,32 @@ module.exports = {
                       ON job_qualifications.qualification_id=qualification.qualification_id`;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
+
+      // for (const k in data) {
+      //   const copydata = Object.keys(data[k])
+      //     .filter((key) => key.includes("qualification"))
+      //     .reduce((cur, key) => {
+      //       return Object.assign(cur, { [key]: data[k][key] });
+      //     }, {});
+      //   console.log(data);
+      //   delete data[k].qualification;
+      //   delete data[k].qualification_id;
+      //   delete data[k].qualification_desc;
+      //   data[k].qualifications = copydata;
+      // }
       return res.json(data);
     });
   },
 
   getJob: (req, res) => {
-    const { id } = req.params;
+    const { position } = req.params;
     const sql = ` SELECT *
                   FROM job
                   INNER JOIN job_qualifications 
                       ON job.job_id=job_qualifications.job_id
                   INNER JOIN qualification 
                       ON job_qualifications.qualification_id=qualification.qualification_id
-                      where job.job_id = ${id}`;
+                      where job.position = ${position}`;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
       return res.json(data);
@@ -69,10 +82,12 @@ module.exports = {
             connection.query(
               "insert into job set ? ",
               {
+                companyName: newData.companyName,
                 position: newData.position,
                 Description: newData.Description,
                 offer: newData.offer,
                 max_candidate_number: newData.max_candidate_number,
+                actualCandidateNum: 0,
                 creation_date: date,
               },
               (err, result, fields) => {
