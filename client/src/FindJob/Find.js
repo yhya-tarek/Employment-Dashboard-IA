@@ -1,32 +1,59 @@
-// import React from "react";
-// import About from "../Components/about/About";
 import "./find.css";
 import tesla from "../assets/tesla.jpg";
 import amazon from "../assets/amazon.jpg";
 import { Link } from "react-router-dom";
 import Pop from "./Pop";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
 import { useNavigate } from "react-router-dom";
 
-// const fakedata = [
-//   {
-//     id: 54,
-//     title: "lksjfslf",
-//     name: "kfjsl",
-//     desc: "ksjflsfjlksjf",
-//   },
-// ];
-
 const Find = () => {
   const [jobs, setJobs] = useState([]);
+  const [originalJobs, setOriginaJobs] = useState([]);
 
   const [error, setError] = useState("");
 
+  const searchValue = useRef("");
+  const filterValue = useRef("");
+
+  const [filterReset, setFilterReset] = useState(0);
+  const [searchReset, setSearchReset] = useState(0);
   const navigate = useNavigate();
   const result = [];
+  const filterOption = [];
+
+  const reset = () => {
+    setJobs(originalJobs);
+  };
+
+  const filter = (e) => {
+    if (e.target.value !== "false") {
+      const filteredJob = jobs.filter((value) => {
+        if (value.position === e.target.value) return true;
+        return false;
+      });
+      setJobs(filteredJob);
+    } else {
+      setJobs(originalJobs);
+    }
+  };
+
+  const search = (e) => {
+    e.preventDefault();
+    if (searchValue.current.value === "") {
+      setJobs(originalJobs);
+    } else {
+      const searchedJobs = jobs.filter((value) => {
+        if (value.companyName === searchValue.current.value) {
+          return true;
+        }
+        return false;
+      });
+      setJobs(searchedJobs);
+    }
+  };
 
   const submitRequist = (e, job_id) => {
     e.preventDefault();
@@ -51,19 +78,26 @@ const Find = () => {
   };
 
   useEffect(() => {
-    // axios.withCredentials = true;
     axios
       .get("http://localhost:5000/applicant/jobs")
       .then((response) => {
         if (response.data) {
           setJobs(response.data);
+          setOriginaJobs(response.data);
         }
       })
       .catch((error) => {
         console.log(error);
-        // setError(error.response.data.msg);
       });
   }, []);
+
+  originalJobs.forEach((currentValue, index, arr) => {
+    filterOption.push(
+      <option onClick={filter} value={currentValue.position}>
+        {currentValue.position}
+      </option>
+    );
+  });
 
   jobs.forEach((currentValue, index, arr) => {
     result.push(
@@ -102,25 +136,33 @@ const Find = () => {
               <input
                 className="search_input"
                 type="text"
-                placeholder="Job title or keywirds"
+                placeholder="Company Name"
+                ref={searchValue}
               />
-              <button className="search_button">Search</button>
+              <button onClick={search} className="search_button">
+                Search
+              </button>
             </div>
           </div>
-
           <div className="filter-box">
             <div className="filter-dropdown">
               <select
                 className="filter-select"
                 id="job-function"
                 name="job-function"
+                // on={filter}
+                // ref={filterValue}
+                // value={null}
+                // defaultValue={"choose the position"}
               >
-                <option>job function</option>
-                <option>IT</option>
-                <option>management</option>
-                <option>hr</option>
+                <option value={false}>chose the Position</option>
+                {filterOption}
               </select>
             </div>
+
+            <button onClick={reset} className="search_button">
+              reset
+            </button>
           </div>
           <hr></hr>
 
