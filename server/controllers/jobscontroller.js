@@ -28,10 +28,7 @@ module.exports = {
   getJobs: (req, res) => {
     const sql = ` SELECT *
                   FROM job
-                  INNER JOIN job_qualifications 
-                      ON job.job_id=job_qualifications.job_id
-                  INNER JOIN qualification 
-                      ON job_qualifications.qualification_id=qualification.qualification_id`;
+                  `;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
 

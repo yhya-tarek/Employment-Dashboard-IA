@@ -5,6 +5,7 @@ import "./pop.css";
 export default function Pop(props) {
   const [isShown, setIsShown] = useState(false);
   const data = props.data;
+  const result = [];
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
@@ -12,6 +13,21 @@ export default function Pop(props) {
     // 👇️ or simply set it to true
     // setIsShown(true);
   };
+
+  for (const qual in data.qualifications) {
+    result.push(
+      <div>
+        <div className="requirement">
+          <i class="bx bx-badge-check"></i>
+          <p className="req">{data.qualifications[qual].qualification}</p>
+        </div>
+        <div className="requirement">
+          <i class="bx bx-badge-check"></i>
+          <p className="req">{data.qualifications[qual].qualification_desc}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -39,15 +55,7 @@ export default function Pop(props) {
             <h2>Required experience </h2>
             <hr />
 
-            <div className="requirement">
-              <i class="bx bx-badge-check"></i>
-              <p className="req">{data.qualification}</p>
-            </div>
-            <div className="requirement">
-              <i class="bx bx-badge-check"></i>
-              <p className="req">{data.qualification_desc}</p>
-            </div>
-            <div></div>
+            {result}
           </div>
         </div>
       ) : null}

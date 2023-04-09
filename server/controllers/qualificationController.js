@@ -2,9 +2,13 @@ const connection = require("../db/connection")();
 
 module.exports = {
   getQualifications: (req, res) => {
-    connection.query("select * from qualification", (err, result, fields) => {
-      return res.status(200).json(result);
-    });
+    connection.query(
+      "select * from qualification inner join job_qualifications on qualification.qualification_id = job_qualifications.qualification_id",
+      (err, result, fields) => {
+        if (err) console.log(err);
+        return res.status(200).json(result);
+      }
+    );
   },
 
   createQualification: (req, res) => {

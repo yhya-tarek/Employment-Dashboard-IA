@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/applicant", applicant);
 
-app.use("/admin", authLogin, authRole("admin"), admin);
+app.use("/admin", admin);
 
 app.use("/login", login);
 
@@ -32,6 +32,6 @@ app.use("/logout", logout);
 
 app.use("/jobs", jobs);
 
-// app.use("/qualifications", qualifications);
+app.use("/qualifications", qualifications);
 
 app.listen(5000, console.log("server is listening"));

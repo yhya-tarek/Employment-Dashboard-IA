@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2023 at 11:01 PM
+-- Generation Time: Apr 09, 2023 at 09:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -29,10 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `job` (
   `job_id` int(11) NOT NULL,
+  `companyName` text NOT NULL,
   `position` varchar(50) NOT NULL,
   `Description` varchar(10000) NOT NULL,
   `offer` int(11) NOT NULL,
   `max_candidate_number` int(11) NOT NULL,
+  `actualCandidateNum` int(11) NOT NULL,
   `creation_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,13 +42,11 @@ CREATE TABLE `job` (
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`job_id`, `position`, `Description`, `offer`, `max_candidate_number`, `creation_date`) VALUES
-(2, 'yhyatarek', 'welcomehome@gmail.com', 200, 5, '2023-03-01'),
-(3, 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, '2023-03-01'),
-(4, 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, '2023-03-01'),
-(5, 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, '2023-03-01'),
-(6, 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, '2023-04-03'),
-(7, 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, '2023-04-03');
+INSERT INTO `job` (`job_id`, `companyName`, `position`, `Description`, `offer`, `max_candidate_number`, `actualCandidateNum`, `creation_date`) VALUES
+(1, 'facebock', 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, 0, '2023-04-05'),
+(2, 'facebock', 'on the fork', 'and have some fun', 500, 5, 0, '2023-04-05'),
+(3, 'apple', 'hr', 'welocme to our company and have some fun with us', 20000, 5, 0, '2023-04-05'),
+(4, 'facebock', 'on the fork', 'and have some fun', 500, 5, 0, '2023-04-05');
 
 -- --------------------------------------------------------
 
@@ -64,12 +64,11 @@ CREATE TABLE `job_qualifications` (
 --
 
 INSERT INTO `job_qualifications` (`qualification_id`, `job_id`) VALUES
-(2, 2),
-(2, 3),
-(2, 4),
-(2, 5),
-(2, 6),
-(2, 7);
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -88,8 +87,8 @@ CREATE TABLE `qualification` (
 --
 
 INSERT INTO `qualification` (`qualification_id`, `qualification`, `qualification_desc`) VALUES
-(2, 'hi', 'skdfjlsnf'),
-(3, 'yhyatarek', 'welcomehome@gmail.com');
+(1, 'hi', 'sfsdfsdfxvdsgsafs'),
+(2, 'node', 'skfjsnfeoifhafnv');
 
 -- --------------------------------------------------------
 
@@ -103,6 +102,14 @@ CREATE TABLE `request_job` (
   `response` enum('approved','declined','no response yet') NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `request_job`
+--
+
+INSERT INTO `request_job` (`user_id`, `job_id`, `response`, `date`) VALUES
+(6, 1, 'no response yet', '2023-04-05'),
+(6, 2, 'no response yet', '2023-04-05');
 
 -- --------------------------------------------------------
 
@@ -210,13 +217,13 @@ ALTER TABLE `user_skills`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `skill`

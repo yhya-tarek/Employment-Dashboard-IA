@@ -8,18 +8,18 @@ const {
   deleteQualification,
 } = require("../controllers/qualificationController");
 
-router.get("/", authLogin, getQualifications);
+router.get("/", getQualifications);
 
 // CREATE QUALIFICATION
-router.post("/", authLogin, authRole("admin"), createQualification);
+router.post("/", createQualification);
 
 //GET SPECIFIC QUALIFICATION
 router.get("/:id", authLogin, getQualification);
 
 //UPDATE QUALIFICATION
-router.put("/:id", authLogin, authRole("admin"), updateQualification);
+router.put("/:id", updateQualification);
 
 // DELETE QUALIFICATION
-router.delete("/:id", authLogin, authRole("admin"), deleteQualification);
+router.delete("/:id", deleteQualification);
 
 module.exports = router;

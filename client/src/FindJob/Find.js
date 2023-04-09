@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Find = () => {
   const [jobs, setJobs] = useState([]);
+  const [qualification, setQualifications] = useState([]);
   const [originalJobs, setOriginaJobs] = useState([]);
 
   const [error, setError] = useState("");
@@ -78,6 +79,11 @@ const Find = () => {
   };
 
   useEffect(() => {
+    axios.get("http://localhost:5000/qualifications").then((response) => {
+      if (response.data) {
+        setQualifications(response.data);
+      }
+    });
     axios
       .get("http://localhost:5000/applicant/jobs")
       .then((response) => {
@@ -85,6 +91,7 @@ const Find = () => {
           setJobs(response.data);
           setOriginaJobs(response.data);
         }
+        // console.log(jobs);
       })
       .catch((error) => {
         console.log(error);
@@ -100,6 +107,10 @@ const Find = () => {
   });
 
   jobs.forEach((currentValue, index, arr) => {
+    currentValue.qualifications = qualification.filter((value) => {
+      if (value.job_id === currentValue.job_id) return true;
+      return false;
+    });
     result.push(
       <div className="job_card">
         <div className="job_name">
