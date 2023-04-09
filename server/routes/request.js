@@ -13,7 +13,7 @@ const {
 router.get("/", getRequests);
 
 //GET REQUEST
-router.get("/", getRequest);
+router.get("/:user_id", getRequest);
 
 //CREATE REQUEST
 router.post("/", sendRequest);

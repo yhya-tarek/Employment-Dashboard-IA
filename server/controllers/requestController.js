@@ -10,7 +10,8 @@ module.exports = {
   },
 
   getRequest: (req, res) => {
-    const sql = `SELECT * FROM request_job where user_id = ${req.body.user_id}`;
+    const { user_id } = req.params;
+    const sql = `SELECT * FROM request_job where user_id = ${user_id}`;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
       return res.json(data);
