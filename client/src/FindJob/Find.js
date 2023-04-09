@@ -1,7 +1,7 @@
 import "./find.css";
-import tesla from "../assets/tesla.jpg";
+// import tesla from "../assets/tesla.jpg";
 import amazon from "../assets/amazon.jpg";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Pop from "./Pop";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
@@ -14,13 +14,13 @@ const Find = () => {
   const [qualification, setQualifications] = useState([]);
   const [originalJobs, setOriginaJobs] = useState([]);
 
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const searchValue = useRef("");
-  const filterValue = useRef("");
+  // const filterValue = useRef("");
 
-  const [filterReset, setFilterReset] = useState(0);
-  const [searchReset, setSearchReset] = useState(0);
+  // const [filterReset, setFilterReset] = useState(0);
+  // const [searchReset, setSearchReset] = useState(0);
   const navigate = useNavigate();
   const result = [];
   const filterOption = [];
@@ -166,7 +166,7 @@ const Find = () => {
                 // value={null}
                 // defaultValue={"choose the position"}
               >
-                <option value={false}>chose the Position</option>
+                <option value={false}>choose the Position</option>
                 {filterOption}
               </select>
             </div>

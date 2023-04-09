@@ -3,13 +3,17 @@ const router = require("express").Router();
 
 const {
   getRequests,
+  getRequest,
   sendRequest,
   respondToRequest,
   deleteRequest,
 } = require("../controllers/requestController");
 
-//GET REQUEST
+//GET REQUESTS
 router.get("/", getRequests);
+
+//GET REQUEST
+router.get("/:user_id", getRequest);
 
 //CREATE REQUEST
 router.post("/", sendRequest);
