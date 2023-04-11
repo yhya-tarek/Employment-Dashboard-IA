@@ -17,7 +17,9 @@ module.exports = {
             req.session.name = result[0].name;
             connection.query(
               `update user set status = "active" where user_id = ${result[0].user_id}`,
-              (err) => console.log(err)
+              (err) => {
+                if (err) console.log(err);
+              }
             );
             return res.status(200).json({ user: result[0], authorized: true });
           } else {
@@ -34,8 +36,5 @@ module.exports = {
       }
       res.end();
     });
-  },
-  logOut: () => {
-    req.session.destroy();
   },
 };

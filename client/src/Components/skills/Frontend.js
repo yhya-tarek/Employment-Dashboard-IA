@@ -1,135 +1,48 @@
-import React from 'react'
-import 'boxicons'
+import { useState } from "react";
+import "boxicons";
+import { useEffect } from "react";
 
-
+import axios from "axios";
 const Frontend = () => {
+  const [skill, setskill] = useState([]);
+  const result = [];
+  useEffect(() => {
+    axios
+
+      .get(
+        `http://localhost:5000/applicant/skills/${window.sessionStorage.getItem(
+          "id"
+        )}`
+      )
+      .then((response) => {
+        if (response.data) {
+          setskill(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  skill.forEach((res) =>
+    result.push(
+      <div className="skills__group">
+        <div className="skills__data">
+          <i class="bx bx-badge-check"></i>
+
+          <div>
+            <h3 className="skills__name">{res.skill}</h3>
+            {/* <span className='skills__level'>{console.log(skill[0].skill)}</span> */}
+          </div>
+        </div>
+      </div>
+    )
+  );
   return (
-<div className='content_skill'>
-    <h3 className='skills__title'></h3>
-         <div className='skills__box'>
-                 <div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
+    <div className="content_skill">
+      <div className="skills__box">{result}</div>
+    </div>
+  );
+};
 
-                    <div>
-                    <h3 className='skills__name'>HTML</h3>
-                    <span className='skills__level'>Basic</span>
-</div>
-</div>
-
-
-
-
-
-
-</div>
-
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
-
-                      <div>
-                      <h3 className='skills__name'>CSS</h3>
-                      <span className='skills__level'>Advanced</span>
-</div>
-</div>
-
-</div>
-
-
-
-
-
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
-                    <div>
-                    <h3 className='skills__name'>PHP</h3>
-                    <span className='skills__level'>Intermediate</span>
-</div>
-</div>
-
-</div>
-
-
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
-
-                    <div>
-                    <h3 className='skills__name'>Bootstrap</h3>
-                    <span className='skills__level'>Basic</span>
-</div>
-</div>
-
-
-
-
-
-
-</div>
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
-
-                    <div>
-                    <h3 className='skills__name'>Python</h3>
-                    <span className='skills__level'>Advanced</span>
-</div>
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    <i class='bx bx-badge-check'></i>
-                    <div>
-                    <h3 className='skills__name'>React</h3>
-                    <span className='skills__level'>Advanced</span>
-</div>
-</div>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-<div className='skills__group'>
-                    <div className='skills__data'>
-                    
-                    <div>
-                    <i class='bx bx-badge-check'></i>
-                    <h3 className='skills__name'>Javascript</h3>
-                    <span className='skills__level'>Intermediate</span>
-                    </div>
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-</div>
-</div>
-  )
-}
-
-export default Frontend ;
+export default Frontend;
