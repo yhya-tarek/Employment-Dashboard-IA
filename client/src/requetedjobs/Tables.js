@@ -1,62 +1,78 @@
-import { useState } from 'react'
-import "./table.css"
+import { useState } from "react";
+import { useEffect } from "react";
+
+import "./table.css";
 // import { FaDots } from 'react-icons/fa';
 // import Icon from '../assets/images/verticalDots.png';
-const INITIAL_STATE = [
-  
-  { id: 2, name: 'Yahia', position: 'Design', status: 'pending' },
-  { id: 3, name: 'Ayman', position: "Market", status: 'pending' },
-  { id: 4, name: 'Hazim', position: "Developer", status: 'pending' },
-  { id: 2, name: 'Yahia', position: 'Design', status: 'pending' },
-  { id: 3, name: 'Ayman', position: "Market", status: 'pending' },
-  { id: 4, name: 'Hazim', position: "Developer", status: 'pending' },
-  
-  
-]
+
+import axios from "axios";
+
+// const result = JSON.parse(any)
+
+// any.forEach(value=>result.push({id:value.id , name: value.name, position: value.position, status: value.status}))
 
 const capitalize = (word) => {
-  return word[0].toUpperCase() + word.slice(1)
-}
+  return word[0].toUpperCase() + word.slice(1);
+};
 
 function Table() {
-  const [users, setUsers] = useState(INITIAL_STATE)
-  const [Reqstatus,setStatus]=useState('pending');
-   const accept =()=>{
-    setStatus('Accepted');
-   };
-   const decline =()=>{
-    setStatus('Declined');
-   };
+  const [any, setAny] = useState([]);
+  // console.log(any)
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/applicant/request/${window.sessionStorage.getItem(
+          "id"
+        )}`
+      )
+      .then((response) => {
+        if (response.data) {
+          setAny(response.data);
+          // console.log(response.data)
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  const INITIAL_STATE = [
+    { user_id: any, job_id: any, response: any, date: any },
+  ];
 
-   const renderUsers = () => {
-    return users.map(({ id, name, position, status }) => {
-       
-      return <tr key={id} >
-         
-      <td style={{ padding: '10px', border: '1px solid black' }}>{id}</td>
-      <td style={{ padding: '10px', border: '1px solid black' }}>{name}</td>
-      <td style={{ padding: '10px', border: '1px solid black' }}>{position}</td>
-      <td style={{ padding: '10px', border: '1px solid black' }}>{Reqstatus}</td>
-      
-    </tr>
-    })
-  }
+  const renderUsers = () => {
+    return any.map(({ user_id, job_id, response, date }) => {
+      return (
+        <tr key={user_id}>
+          <td style={{ padding: "10px", border: "1px solid black" }}>
+            {user_id}
+          </td>
+          <td style={{ padding: "10px", border: "1px solid black" }}>
+            {job_id}
+          </td>
+          <td style={{ padding: "10px", border: "1px solid black" }}>
+            {response}
+          </td>
+          <td style={{ padding: "10px", border: "1px solid black" }}>{date}</td>
+        </tr>
+      );
+    });
+  };
 
-   const renderHeader = () => {
-    return <tr className='table-header'>
-      {Object.keys(INITIAL_STATE[0]).map(key => <th>{capitalize(key)}</th>)}
-    </tr>
-  }
+  const renderHeader = () => {
+    return (
+      <tr className="table-header">
+        {Object.keys(INITIAL_STATE[0]).map((key) => (
+          <th>{capitalize(key)}</th>
+        ))}
+      </tr>
+    );
+  };
 
   return (
-    
-      <table>
-        {renderHeader()}
-        <tbody>
-          {renderUsers()}
-        </tbody>
-      </table>
-   
+    <table>
+      {renderHeader()}
+      <tbody>{renderUsers()}</tbody>
+    </table>
   );
 }
 
