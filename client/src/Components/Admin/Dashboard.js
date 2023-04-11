@@ -2,12 +2,11 @@ import { Search } from "../Home/Search";
 import "../../style/Dashboard.css";
 import { FaBell } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
-import DeleteJob from "../Admin/DeleteJob1";
 import Table from "../Table";
 import Image from "../../assets/images/t2.avif";
 import { Footer } from "../shared/Footer";
 import NotificationButton from "../NotificationButton";
-import AddJob from "./AddJob1";
+import AddJob from "./AddJob";
 import AddEmployee from "../Admin/AddmEmployee";
 
 export const Dashboard = () => {
@@ -37,9 +36,7 @@ export const Dashboard = () => {
         <AddJob href="#">
           <FaPlus></FaPlus>
         </AddJob>
-        <DeleteJob>
-          <FaPlus></FaPlus>
-        </DeleteJob>
+
         <AddEmployee href="#">
           <FaPlus></FaPlus>
         </AddEmployee>

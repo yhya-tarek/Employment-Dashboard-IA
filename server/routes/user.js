@@ -6,9 +6,12 @@ const {
   addNewUser,
   updateUser,
   deleteUser,
+  getApplicant,
 } = require("../controllers/userController");
 
 router.get("/", getApplicants);
+
+router.get("/:user_id", getApplicant);
 
 //* fucntion add new applicant to DB
 router.post("/", addNewUser);

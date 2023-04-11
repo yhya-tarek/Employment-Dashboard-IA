@@ -13,6 +13,21 @@ module.exports = {
     });
   },
 
+  getApplicant: (req, res) => {
+    const { user_id } = req.params;
+    connection.query(
+      `select * from user where user_id = ${user_id}`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(404).json("failed to read files");
+        } else {
+          res.status(200).json(result);
+        }
+      }
+    );
+  },
+
   addNewUser: (req, res) => {
     const newData = req.body;
     let skill_ids = [];
