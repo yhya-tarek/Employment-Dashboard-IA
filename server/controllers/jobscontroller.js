@@ -85,7 +85,7 @@ module.exports = {
                 offer: newData.offer,
                 max_candidate_number: newData.max_candidate_number,
                 actualCandidateNum: 0,
-                creation_date: date,
+                creation_date: date.toISOString().slice(0, 10),
               },
               (err, result, fields) => {
                 if (err) {

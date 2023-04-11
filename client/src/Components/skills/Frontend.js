@@ -1,14 +1,20 @@
 import { useState } from "react";
 import "boxicons";
 import { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const Frontend = () => {
   const [skill, setskill] = useState([]);
+  const navigate = useNavigate();
   const result = [];
   useEffect(() => {
-    axios
+    const win = window.sessionStorage;
+    if (!win.getItem("auth")) {
+      navigate("/login");
+    } else if (win.getItem("type") === "admin") navigate("/admin");
 
+    axios
       .get(
         `http://localhost:5000/applicant/skills/${window.sessionStorage.getItem(
           "id"
