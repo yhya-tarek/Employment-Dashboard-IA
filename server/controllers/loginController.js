@@ -15,6 +15,10 @@ module.exports = {
             req.session.Email = data.Email;
             req.session.type = result[0].type;
             req.session.name = result[0].name;
+            connection.query(
+              `update user set status = "active" where user_id = ${result[0].user_id}`,
+              (err) => console.log(err)
+            );
             return res.status(200).json({ user: result[0], authorized: true });
           } else {
             return res.status(401).json({

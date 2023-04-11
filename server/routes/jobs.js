@@ -23,6 +23,6 @@ router.get("/:position", getJob);
 router.put("/:id", authLogin, authRole("admin"), updateJob);
 
 // DELETE JOB
-router.delete("/:id", authLogin, authRole("admin"), deleteJob);
+router.delete("/:id", deleteJob);
 
 module.exports = router;

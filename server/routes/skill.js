@@ -10,7 +10,7 @@ const {
 
 router.get("/", getSkills);
 
-router.get("/:skill_id", getSkill);
+router.get("/:user_id", getSkill);
 
 router.post("/", authLogin, authRole("admin"), createSkills);
 

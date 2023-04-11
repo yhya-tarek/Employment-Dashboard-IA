@@ -13,8 +13,8 @@ module.exports = {
   },
 
   getSkill: (req, res) => {
-    const { skill_id } = req.params;
-    sql = `select * from skill where skill_id = ${skill_id}`;
+    const { user_id } = req.params;
+    sql = `select * from user_skills where user_id = ${user_id}`;
     connection.query(sql, (err, result) => {
       if (err) {
         console.log(err);
@@ -23,7 +23,13 @@ module.exports = {
         if (!result[0]) {
           return res.status(404).json({ msg: "Not Found" });
         }
-        res.status(200).json(result);
+        connection.query(
+          `select * from skill where skill_id = ${result[0].skill_id}`,
+          (err, result) => {
+            if (err) console.log(err);
+            return res.status(200).json(result);
+          }
+        );
       }
     });
   },
