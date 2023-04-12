@@ -10,9 +10,7 @@ export const Button = () => {
 
   const logOut = () => {
     axios
-      .post("http://localhost:5000/logout", {
-        user_id: window.sessionStorage.getItem("id"),
-      })
+      .post("http://localhost:5000/logout")
       .then(() => {
         window.sessionStorage.clear();
         setAuth(false);

@@ -1,26 +1,20 @@
 import "./find.css";
-// import tesla from "../assets/tesla.jpg";
 import amazon from "../assets/amazon.jpg";
-// import { Link } from "react-router-dom";
 import Pop from "./Pop";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Find = () => {
+  const location = useLocation("");
   const [jobs, setJobs] = useState([]);
   const [qualification, setQualifications] = useState([]);
   const [originalJobs, setOriginaJobs] = useState([]);
-
-  // const [error, setError] = useState("");
-
-  const searchValue = useRef("");
-  // const filterValue = useRef("");
-
-  // const [filterReset, setFilterReset] = useState(0);
-  // const [searchReset, setSearchReset] = useState(0);
+  const [searchValue, setSearchValue] = useState(
+    location.state ? location.state.data : ""
+  );
   const navigate = useNavigate();
   const result = [];
   const filterOption = [];
@@ -35,19 +29,19 @@ const Find = () => {
         if (value.position === e.target.value) return true;
         return false;
       });
+
       setJobs(filteredJob);
     } else {
       setJobs(originalJobs);
     }
   };
-
   const search = (e) => {
     e.preventDefault();
-    if (searchValue.current.value === "") {
+    if (searchValue === "") {
       setJobs(originalJobs);
     } else {
       const searchedJobs = jobs.filter((value) => {
-        if (value.companyName === searchValue.current.value) {
+        if (value.companyName === searchValue) {
           return true;
         }
         return false;
@@ -141,6 +135,11 @@ const Find = () => {
     );
   });
 
+  // console.log(location.state);
+
+  const searchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
   return (
     <>
       <Header></Header>
@@ -153,7 +152,9 @@ const Find = () => {
                 className="search_input"
                 type="text"
                 placeholder="Company Name"
-                ref={searchValue}
+                // ref={searchValue}
+                onChange={searchChange}
+                value={searchValue}
               />
               <button onClick={search} className="search_button">
                 Search

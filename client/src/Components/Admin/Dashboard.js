@@ -1,12 +1,17 @@
 import "../../style/Dashboard.css";
 import { FaPlus } from "react-icons/fa";
+import DeleteEmployee from '../Admin/DeleteEmployee'
 import Table from "../Table";
 import Image from "../../assets/images/t2.avif";
 import { Footer } from "../shared/Footer";
 import Bu, { Button } from "../Home/LgnButton";
 import NotificationButton from "../NotificationButton";
+import DeleteJob from '../Admin/DeleteJob'
 import AddJob from "./AddJob";
 import AddEmployee from "../Admin/AddmEmployee";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
+export const Dashboard = () => {
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -19,7 +24,6 @@ export const Dashboard = () => {
       navigate("/login");
     }
   }, []);
-
   return (
     <>
       <nav className="admin-nav">
@@ -47,10 +51,16 @@ export const Dashboard = () => {
         <AddJob href="#">
           <FaPlus></FaPlus>
         </AddJob>
-
+        <DeleteJob>
+        <FaPlus></FaPlus>
+        </DeleteJob>
         <AddEmployee href="#">
           <FaPlus></FaPlus>
         </AddEmployee>
+        <DeleteEmployee>
+        <FaPlus></FaPlus>
+        </DeleteEmployee>
+
       </div>
 
       <Table></Table>

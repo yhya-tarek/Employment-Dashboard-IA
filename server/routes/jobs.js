@@ -17,7 +17,7 @@ router.get("/", getJobs);
 router.post("/", createJob);
 
 //GET SPECIFIC JOB
-router.get("/:position", getJob);
+router.get("/:job_id", getJob);
 
 //UPDATE JOB
 router.put("/:id", authLogin, authRole("admin"), updateJob);
