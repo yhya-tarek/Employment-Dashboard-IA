@@ -1,11 +1,10 @@
-import { Search } from "../Home/Search";
 import "../../style/Dashboard.css";
-import { FaBell } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import DeleteEmployee from '../Admin/DeleteEmployee'
 import Table from "../Table";
 import Image from "../../assets/images/t2.avif";
 import { Footer } from "../shared/Footer";
+import Bu, { Button } from "../Home/LgnButton";
 import NotificationButton from "../NotificationButton";
 import DeleteJob from '../Admin/DeleteJob'
 import AddJob from "./AddJob";
@@ -13,9 +12,18 @@ import AddEmployee from "../Admin/AddmEmployee";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 export const Dashboard = () => {
- 
-  
- 
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+export const Dashboard = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const win = window.sessionStorage;
+    if (!win.getItem("auth")) {
+      if (win.getItem("type") !== "admin") navigate("/");
+      navigate("/login");
+    }
+  }, []);
   return (
     <>
       <nav className="admin-nav">
@@ -26,6 +34,7 @@ export const Dashboard = () => {
           <div className="mini-control">
             <NotificationButton></NotificationButton>
           </div>
+          <Button></Button>
         </div>
       </nav>
       <div

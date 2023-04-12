@@ -73,6 +73,11 @@ const Find = () => {
   };
 
   useEffect(() => {
+    const win = window.sessionStorage;
+    if (!win.getItem("auth")) {
+      navigate("/login");
+    } else if (win.getItem("type") === "admin") navigate("/admin");
+
     axios.get("http://localhost:5000/qualifications").then((response) => {
       if (response.data) {
         setQualifications(response.data);

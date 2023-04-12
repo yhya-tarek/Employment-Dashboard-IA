@@ -1,24 +1,22 @@
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./table.css";
-// import { FaDots } from 'react-icons/fa';
-// import Icon from '../assets/images/verticalDots.png';
-
 import axios from "axios";
-
-// const result = JSON.parse(any)
-
-// any.forEach(value=>result.push({id:value.id , name: value.name, position: value.position, status: value.status}))
 
 const capitalize = (word) => {
   return word[0].toUpperCase() + word.slice(1);
 };
 
 function Table() {
+  const navigate = useNavigate();
   const [any, setAny] = useState([]);
   // console.log(any)
   useEffect(() => {
+    const win = window.sessionStorage;
+    if (!win.getItem("auth")) {
+      navigate("/login");
+    } else if (win.getItem("type") === "admin") navigate("/admin");
+
     axios
       .get(
         `http://localhost:5000/applicant/request/${window.sessionStorage.getItem(

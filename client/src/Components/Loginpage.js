@@ -27,9 +27,11 @@ export const Loginpage = () => {
           if (response.data.authorized) {
             console.log(response.data);
             win.setItem("name", response.data.user.name);
+            win.setItem("type", response.data.user.type);
             win.setItem("id", response.data.user.user_id);
             win.setItem("auth", response.data.authorized);
-            navigate("/");
+            if (response.data.user.type === "admin") navigate("/admin");
+            else navigate("/");
           } else {
           }
         })
