@@ -3,8 +3,10 @@
     font-size: xx-large;
     position: relative;
     top: 10px;
- 
+    color: black;
+    margin-bottom: 20px;
 }
+
 .tech {
 text-align: center;
 display: block;

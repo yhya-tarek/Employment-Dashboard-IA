@@ -2,7 +2,9 @@
 import "../../style/AddJob.css";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+
 import { FaPlus } from "react-icons/fa";
+import { FaWindowClose } from "react-icons/fa";
 import "../../style/AddEmployee.css";
 export default function Pop() {
   const [isShown, setIsShown] = useState(false);
@@ -52,6 +54,11 @@ export default function Pop() {
         <form onSubmit={e=>onSubmit(e)}>
           <div className="AddEmployee-Contianer">
             <div className="title">
+            <div className="close" onClick={handleClick}>
+            <h3>
+            <FaWindowClose ></FaWindowClose>
+            </h3>
+            </div>
               <h2>Add Employee</h2>
               <hr className="add-employee-hr"></hr>
             </div>
@@ -60,34 +67,34 @@ export default function Pop() {
               {/* <Upload></Upload> */}
               <label>
                 {" "}
-                name<input value={name}  name='name' onChange={e =>onInputChange(e)}type="text"></input>
+                name<input id="inp" value={name}  name='name' onChange={e =>onInputChange(e)}type="text"></input>
               </label>
 
               <label>
                 {" "}
-                password<input  value={password}  name='password' onChange={e =>onInputChange(e)} type="password"></input>
+                password<input id="inp"  value={password}  name='password' onChange={e =>onInputChange(e)} type="password"></input>
               </label>
               <label>
                 {" "}
-                Email<input value={Email}  name='Email' onChange={e =>onInputChange(e)} type=""></input>
+                Email<input id="inp" value={Email}  name='Email' onChange={e =>onInputChange(e)} type=""></input>
               </label>
               <input
-                value={image_url}  name='image_url' onChange={e =>onInputChange(e)}
+                value={image_url} id="inp"  name='image_url' onChange={e =>onInputChange(e)}
                 type="file"
                 accept="image/*"
                 
               />
               <label>
                 {" "}
-                Mobile number<input value={phone}  name='phone' onChange={e =>onInputChange(e)} type=""></input>
+                Mobile number<input id="inp"  value={phone}  name='phone' onChange={e =>onInputChange(e)} type=""></input>
               </label>
               <label>
                 {" "}
-                Skills<input value={skill}  name='skill' onChange={e =>onInputChange(e)} type=""></input>
+                Skills<input value={skill} id="inp"  name='skill' onChange={e =>onInputChange(e)} type=""></input>
               </label>
               <label> Bio</label>
               <textarea
-              value={bio}  name='bio' onChange={e =>onInputChange(e)}
+              value={bio}  name='bio' id="inp"  onChange={e =>onInputChange(e)}
               
                 
                 rows="4"
@@ -97,11 +104,11 @@ export default function Pop() {
              
               <label>
                 {" "}
-                type<input  value={type}  name='type' onChange={e =>onInputChange(e)}  type="text"></input>
+                type<input id="inp"  value={type}  name='type' onChange={e =>onInputChange(e)}  type="text"></input>
               </label>
               <label>
                 {" "}
-                status<input  value={status}  name='status' onChange={e =>onInputChange(e)} type="text"></input>
+                status<input id="inp"   value={status}  name='status' onChange={e =>onInputChange(e)} type="text"></input>
               </label>
 
 

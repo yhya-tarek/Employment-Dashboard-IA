@@ -1,7 +1,9 @@
-
+import '../../style/Deleteicon.css';
 import "../../style/AddJob.css";
 import { FaPlus } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
+import { FaWindowClose } from "react-icons/fa";
+
 import axios from "axios";
 export default function Pop() {
   const [deletejob , setdeleletejob]=useState(
@@ -44,7 +46,13 @@ export default function Pop() {
       {isShown ? (
         <form onSubmit={e=>deletejobbtn(e)}>
           <div className="add-job-Contianer" id="job">
+         
             <div className="title">
+            <div className="close" onClick={handleClick}>
+            <h3>
+            <FaWindowClose ></FaWindowClose>
+            </h3>
+            </div>
               <h2>Delete a job offer</h2>
               <hr className="add-job-hr"></hr>
             </div>
@@ -54,7 +62,7 @@ export default function Pop() {
 
               <label>
                 {" "}
-                job id<input name="job_id" value={job_id} type="text" onChange={e =>setdeleletejob({...deletejob,job_id:e.target.value})}></input>
+                job id<input id="inp" name="job_id" value={job_id} type="text" onChange={e =>setdeleletejob({...deletejob,job_id:e.target.value})}></input>
               </label>
              
             

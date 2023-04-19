@@ -29,7 +29,7 @@ export const Dashboard = () => {
             <h4>Admin Dashboard</h4>
           </div>
           <div className="mini-control">
-            <NotificationButton></NotificationButton>
+            {/* <NotificationButton></NotificationButton> */}
           </div>
           <Button></Button>
         </div>
@@ -45,7 +45,7 @@ export const Dashboard = () => {
       ></div>
       <div className="sub-mini-control">
         {/* <Search></Search> */}
-        <AddJob href="#">
+        <AddJob  href="#">
           <FaPlus></FaPlus>
         </AddJob>
         <DeleteJob>

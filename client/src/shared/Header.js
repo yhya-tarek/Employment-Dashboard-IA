@@ -10,8 +10,8 @@ return(
     </div>
   <nav>
     <ul>
-    <li><a href="#">Find jobs</a></li>
-    <li><a href="#">About</a></li>
+    <li><a href="/find">Find jobs</a></li>
+    <li><a href="/account">About</a></li>
    
     
   </ul>

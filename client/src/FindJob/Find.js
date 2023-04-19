@@ -1,6 +1,7 @@
 import "./find.css";
 import amazon from "../assets/amazon.jpg";
 import Pop from "./Pop";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Header } from "../shared/Header";
@@ -51,9 +52,11 @@ const Find = () => {
   };
 
   const submitRequist = (e, job_id) => {
+  
     e.preventDefault();
     try {
       if (window.sessionStorage.getItem("id")) {
+        
         axios
           .post("http://localhost:5000/applicant/request", {
             job_id: job_id,
@@ -63,6 +66,7 @@ const Find = () => {
           .then((response) => {
             if (response) {
               console.log(response);
+              alert('your request is successfully sent to the admin xD');
             }
           })
           .catch((err) => console.log("you have already requested this job"));
@@ -73,10 +77,10 @@ const Find = () => {
   };
 
   useEffect(() => {
-    const win = window.sessionStorage;
-    if (!win.getItem("auth")) {
-      navigate("/login");
-    } else if (win.getItem("type") === "admin") navigate("/admin");
+    // const win = window.sessionStorage;
+    // if (!win.getItem("auth")) {
+    //   navigate("/login");
+    // } else if (win.getItem("type") === "admin") navigate("/admin");
 
     axios.get("http://localhost:5000/qualifications").then((response) => {
       if (response.data) {
@@ -121,6 +125,7 @@ const Find = () => {
           </div>
         </div>
         {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
+        <div className="div-btns">
         <Pop data={currentValue}></Pop>
 
         <button
@@ -131,6 +136,7 @@ const Find = () => {
           Request
           {/* <Link> Request </Link> */}
         </button>
+        </div>
       </div>
     );
   });
@@ -143,7 +149,7 @@ const Find = () => {
   return (
     <>
       <Header></Header>
-
+      <div className="find-body">
       <div>
         <div className="search_wrapper">
           <div className="search_box">
@@ -189,6 +195,7 @@ const Find = () => {
           </section>
         </div>
         <div className="Footer-find">
+          </div>
           <Footer></Footer>
         </div>
       </div>

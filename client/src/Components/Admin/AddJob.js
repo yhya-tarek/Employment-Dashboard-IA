@@ -1,6 +1,7 @@
 
 import "../../style/AddJob.css";
 import { FaPlus } from "react-icons/fa";
+import { FaWindowClose } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 export default function Pop() {
@@ -28,6 +29,7 @@ export default function Pop() {
   await axios
   .post("http://localhost:5000/admin/jobs", addjob)
   .catch(err=>console.log(err))
+  
  };
   const [isShown, setIsShown] = useState(false);
 
@@ -41,6 +43,7 @@ export default function Pop() {
 
   return (
     <div>
+     
       <button className="icon-button" onClick={handleClick}>
         <FaPlus></FaPlus> &nbsp;Add Job Offer
       </button>
@@ -48,8 +51,14 @@ export default function Pop() {
       {/* 👇️ show elements on click */}
       {isShown ? (
         <form onSubmit={e=>addjobbtn(e)}>
+          
           <div className="add-job-Contianer" id="job">
             <div className="title">
+              <div className="close" onClick={handleClick}>
+            <h3>
+            <FaWindowClose ></FaWindowClose>
+            </h3>
+            </div>
               <h2>Add job offer</h2>
               <hr className="add-job-hr"></hr>
             </div>
@@ -59,11 +68,11 @@ export default function Pop() {
 
               <label>
                 {" "}
-                companyName<input name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
+                companyName <input  name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
               </label>
               <label>
                 {" "}
-                position<input name="position" value={position} type="text" onChange={e =>onInputChange(e)}></input>
+                position<input id="inp"name="position" value={position} type="text" onChange={e =>onInputChange(e)}></input>
               </label>
               <label> Description</label>
               <textarea name="Description"  value={Description} type="text-area" rows="4" cols="50"onChange={e =>onInputChange(e)}></textarea>
@@ -79,7 +88,7 @@ export default function Pop() {
               
               <label>
                 {" "}
-                Max Candidtate Number<input name="max_candidate_number"value={max_candidate_number}type="text" onChange={e =>onInputChange(e)}></input>
+                Max Candidtate Number<input id="inp"name="max_candidate_number"value={max_candidate_number}type="text" onChange={e =>onInputChange(e)}></input>
               </label>
             
               <button className="post-button">Post now!</button>

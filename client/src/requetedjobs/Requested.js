@@ -1,6 +1,7 @@
 // import React from 'react'
 import "./requested.css";
 import { Header } from "../shared/Header";
+import {Footer} from '../Components/shared/Footer'
 // import { useState } from 'react'
 // import { FaDots } from 'react-icons/fa';
 // import Icon from '../assets/images/verticalDots.png';
@@ -13,7 +14,14 @@ const Requested = () => {
   return (
     <>
       <Header></Header>
+      {/* <div className="div-table"> */}
+      <div className="request-body">
       <Tables></Tables>
+      {/* </div> */}
+      <div className="div-footer">
+      <Footer></Footer>
+      </div>
+      </div>
     </>
   );
 };

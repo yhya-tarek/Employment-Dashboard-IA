@@ -12,6 +12,10 @@
     /* width: 800px; */
 
 }
+table{
+    color: white;
+    
+}
 body{
     margin: auto;
 
@@ -41,3 +45,14 @@ body{
     border-radius: 15px;
     width: fit-content;
 }
+
+
+.div-footer {
+    margin-top: 250px;
+}
+.request-body{
+
+  
+
+    background-image: url(../assets/images/w01.jpg);
+  }

@@ -23,11 +23,11 @@ export const Footer = ()=>{
              
               <h4 className="lang-en">Departments</h4>
               <ul className="menu-list ps-4 lang-en">
-                <li><a href="#about">Marketing</a></li>
-                <li><a href="#service">Finance</a></li>
-                <li><a href="#pricing">Sales</a></li>
-                <li><a href="faq.html">Design</a></li>
-                <li><a href="faq.html">Developers</a></li>
+                <li><a href="#about">Machine Learning</a></li>
+               
+                <li><a href="#pricing">Web Development</a></li>
+                <li><a href="faq.html">Mobile Development</a></li>
+                <li><a href="faq.html">Internet Technology</a></li>
                 
               </ul>
               
@@ -38,7 +38,7 @@ export const Footer = ()=>{
               <ul className="menu-list ps-4">
                 <li className="get-in-touch">
                   <i className="fa fa-envelope"></i>
-                  <a href="#">@Employment.com</a>
+                  <a href="#" id="email">Employment@gmail.com</a>
                 </li>
                 <li className="get-in-touch">
                   10th-Abbas Elakkad Street , cairo-Egypt.

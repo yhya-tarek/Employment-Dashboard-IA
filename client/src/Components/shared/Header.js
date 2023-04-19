@@ -7,13 +7,14 @@ export const Header = ()=>{
 return(
     <header className="main-header">
       <div className='logo'>
+        
     <img  src={logo} alt="logo"/>
     </div>
   <nav>
     <ul>
-    <li><a href="#">Find jobs</a></li>
-    <li><a href="#">About</a></li>
-   
+    <li><a href="/find">Find jobs</a></li>
+    <li><a href="/account">About</a></li>
+    <li><a href="/requested">Request History</a></li>
     <Button></Button>
     
   </ul>

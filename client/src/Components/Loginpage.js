@@ -1,9 +1,10 @@
-// import "../style/Login.css";
+import "../style/Login.css";
 import { Header } from "./shared/Header";
 import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import {Footer} from '../shared/Footer';
 export const Loginpage = () => {
   const navigate = useNavigate();
   const win = window.sessionStorage;
@@ -45,6 +46,7 @@ export const Loginpage = () => {
   return (
     <>
       <Header></Header>
+      <div className="login-body">
       <div class="center">
         <h1>Login</h1>
         <form onSubmit={checkValidation}>
@@ -85,12 +87,20 @@ export const Loginpage = () => {
               {error}
             </div>
           ) : null}
-          <div class="pass">Forgot Password?</div>
+         
           <input type="submit" value="Login" />
           <div class="signup_link">
-            Not a member? <a href="#">Signup</a>
+          
           </div>
+          <br></br>
+          
         </form>
+       
+      </div>
+      
+      <div className="div-footer">
+      </div> 
+      <Footer></Footer>
       </div>
     </>
   );

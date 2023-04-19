@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import "../requetedjobs/Tables";
 const INITIAL_STATE = [
   {
     job_id: "",
@@ -42,7 +42,7 @@ function Table() {
             });
         });
       }
-    });
+    }).catch(err=>console.log(err));
   }, []);
   const accept = (e, job_id, user_id) => {
     e.preventDefault();
@@ -60,11 +60,14 @@ function Table() {
   const renderUsers = () => {
     return requests.map(({ job_id, user_id, response, date }) => {
       let flag = true;
-      const job = jobs.filter((elem) => {
+      const job = jobs?.filter((elem) => {
+      
         if (elem[0].job_id === job_id && flag) {
+          console.log(elem[0])
           flag = false;
           return true;
         }
+      
         return false;
       });
       flag = true;
@@ -93,7 +96,7 @@ function Table() {
             {response}
           </td>
           <td style={{ padding: "10px", border: "1px solid black" }}>{date}</td>
-          <td>
+          <td className="btns">
             <button
               className="accept-button"
               onClick={(e) => accept(e, job_id, user_id)}

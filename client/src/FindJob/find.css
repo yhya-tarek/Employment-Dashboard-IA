@@ -5,6 +5,12 @@
   height: 3.5rem;
   position: relative;
 }
+.find-body{
+
+  
+
+  background-image: url(../assets/images/w01.jpg);
+}
 .seacrh_box {
   width: 100%;
   position: absolute;
@@ -27,7 +33,7 @@
   padding: 0.5rem;
 }
 .search_button {
-  width: 200px;
+  width: 158px;
   background-color: rgb(99, 134, 240);
   border: none;
   color: white;
@@ -40,7 +46,8 @@
   background-color: #f4f2ee;
   border-radius: 15px;
   overflow: scroll;
-  height: 775px;
+  height: 650px;
+
 }
 .job_card {
   display: flex;
@@ -122,11 +129,16 @@ h4 {
 
 button.icon-button {
   border: none;
-  width: 68px;
-  background: azure;
-  height: 25px;
+  width: 100px;
+
+  /* height: 25px; */
   margin: 8px;
   border-radius: 8px;
+}
+button.icon-button:hover{
+background-color: transparent;
+opacity: 0.4;
+cursor: pointer;
 }
 .viewButton {
   border: none;
@@ -141,4 +153,8 @@ select#job-function {
 }
 .Footer-find {
   margin-top: 800px;
+}
+button#view-btn {
+  position: relative;
+  right: 17px;
 }

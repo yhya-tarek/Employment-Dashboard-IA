@@ -33,7 +33,9 @@ const About = () => {
   console.log(data);
   return (
     <>
+    
       <Header></Header>
+      <div className="about-body">
       <section className="about__section" id="about">
         <div className="name">
           <h1>{data.name}</h1>
@@ -48,10 +50,12 @@ const About = () => {
             </p>
           </div>
         </div>
-
+      
         <Skills />
-        <Footer></Footer>
+      
       </section>
+      </div>
+      <Footer></Footer>
       {/* <Footer></Footer> */}
     </>
   );

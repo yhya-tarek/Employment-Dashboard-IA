@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./pop.css";
+
 // import '../style/NotificatonButton.css';
 // import { FaBell } from 'react-icons/fa';
 export default function Pop(props) {
@@ -17,6 +18,7 @@ export default function Pop(props) {
   for (const qual in data.qualifications) {
     result.push(
       <div>
+   
         <div className="requirement">
           <i class="bx bx-badge-check"></i>
           <p className="req">{data.qualifications[qual].qualification}</p>
@@ -31,7 +33,7 @@ export default function Pop(props) {
 
   return (
     <div>
-      <button className="icon-button" onClick={handleClick}>
+      <button id="view-btn" className="icon-button" onClick={handleClick}>
         View
       </button>
 

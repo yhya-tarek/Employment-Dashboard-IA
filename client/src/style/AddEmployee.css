@@ -4,22 +4,26 @@
   right: 380px;
   /* right: 80px; */
   top: 65px;
-  border-block: 2px;
-  border-radius: 5px;
+  /* border-block: 2px; */
+  /* border-radius: 5px; */
   height: -moz-fit-content;
-  height: 380px;
+  /* height: 300px; */
   /* border: 1px solid; */
   padding: 10px;
-  box-shadow: 3px 4px 4px 4px darkslategrey;
+  /* box-shadow: 3px 4px 4px 4px darkslategrey; */
   /* color: rgb(10, 223, 223); */
   z-index: 1;
   width: 600px;
+  /* width: 400px; */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
 hr {
   margin-bottom: 10px;
-  width: 39%;
+  /* width: 39%;
   height: 4px;
-  background: black;
+  background: black; */
 }
 .add-employee-hr {
   width: 24%;
@@ -70,4 +74,8 @@ textarea {
   height: 26px;
   /* width: 123px; */
   border-radius: 40px;
+}
+input#inp {
+  margin-left: 10px;
+  margin-top: 5px;
 }

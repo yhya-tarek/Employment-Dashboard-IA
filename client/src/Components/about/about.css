@@ -11,11 +11,13 @@
         position: relative;
         right: 75px;
     } */
+  
     .about__container{
 
         grid-template-columns: repeat(2,1fr);
         align-items: left;
         column-gap: 4rem ;
+  
     } 
 
     .about__img{
@@ -99,3 +101,11 @@
         padding: 0px;
         margin: 0px;
     } */
+    .tech{
+        margin-bottom: 50px;
+    }
+    .table{
+        margin-bottom: 20px;
+        position: relative;
+        top: -62px;
+    }

@@ -171,3 +171,9 @@ footer .contact-form button.filled-button:hover {
   align-items: flex-start;
   justify-content: space-around;
 }
+a#email {
+  margin-left: -55px;
+}
+a:hover{
+  cursor:default;
+}
