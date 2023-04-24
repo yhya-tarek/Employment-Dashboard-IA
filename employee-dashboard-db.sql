@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 09:29 PM
+-- Generation Time: Apr 24, 2023 at 01:24 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -43,10 +43,8 @@ CREATE TABLE `job` (
 --
 
 INSERT INTO `job` (`job_id`, `companyName`, `position`, `Description`, `offer`, `max_candidate_number`, `actualCandidateNum`, `creation_date`) VALUES
-(1, 'facebock', 'yhyatadfrek', 'welcomfsdfdsfehome@gmail.com', 500, 5, 0, '2023-04-05'),
-(2, 'facebock', 'on the fork', 'and have some fun', 500, 5, 0, '2023-04-05'),
 (3, 'apple', 'hr', 'welocme to our company and have some fun with us', 20000, 5, 0, '2023-04-05'),
-(4, 'facebock', 'on the fork', 'and have some fun', 500, 5, 0, '2023-04-05');
+(11, 'samsung', 'ceo', 'in this company all we care about is our customers and we want to make them happy and pleased with our products', 25000, 50, 0, '2023-04-24');
 
 -- --------------------------------------------------------
 
@@ -64,11 +62,8 @@ CREATE TABLE `job_qualifications` (
 --
 
 INSERT INTO `job_qualifications` (`qualification_id`, `job_id`) VALUES
-(1, 1),
-(1, 2),
 (1, 3),
-(1, 4),
-(2, 1);
+(3, 11);
 
 -- --------------------------------------------------------
 
@@ -88,7 +83,8 @@ CREATE TABLE `qualification` (
 
 INSERT INTO `qualification` (`qualification_id`, `qualification`, `qualification_desc`) VALUES
 (1, 'hi', 'sfsdfsdfxvdsgsafs'),
-(2, 'node', 'skfjsnfeoifhafnv');
+(2, 'node', 'skfjsnfeoifhafnv'),
+(3, 'laravel', 'you have to have atleast 10 years of experience with this language');
 
 -- --------------------------------------------------------
 
@@ -100,16 +96,8 @@ CREATE TABLE `request_job` (
   `user_id` int(11) NOT NULL,
   `job_id` int(11) NOT NULL,
   `response` enum('approved','declined','no response yet') NOT NULL,
-  `date` date NOT NULL
+  `date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `request_job`
---
-
-INSERT INTO `request_job` (`user_id`, `job_id`, `response`, `date`) VALUES
-(6, 1, 'no response yet', '2023-04-05'),
-(6, 2, 'no response yet', '2023-04-05');
 
 -- --------------------------------------------------------
 
@@ -121,6 +109,16 @@ CREATE TABLE `skill` (
   `skill_id` int(11) NOT NULL,
   `skill` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `skill`
+--
+
+INSERT INTO `skill` (`skill_id`, `skill`) VALUES
+(2, 'nodejs'),
+(3, 'python'),
+(4, 'laravel'),
+(5, 'good speaker');
 
 -- --------------------------------------------------------
 
@@ -145,7 +143,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `Email`, `password`, `phone`, `status`, `type`, `image_url`, `bio`) VALUES
-(6, 'yhyatarek', '1home@gmail.com', '$2b$10$9E4d8.iZO09j3k9VXjHCG.29dTTg1TBWXbPphZw62K49Z0JvAEE1y', 498558, 'active', 'admin', '', 'hello to my account');
+(6, 'yhyatarek', '1home@gmail.com', '$2b$10$/.8ML8dLomsrE/EFNcBZuegRMqUeSSIJKQ1YFdDySaCraw.3.4voi', 498558, 'active', 'admin', '', 'hello to my account');
 
 -- --------------------------------------------------------
 
@@ -217,25 +215,25 @@ ALTER TABLE `user_skills`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `skill`
 --
 ALTER TABLE `skill`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
