@@ -71,6 +71,7 @@ module.exports = {
       connection.query(
         `select qualification_id from qualification where qualification = "${newData.qualification[i]}"`,
         (err, result, fields) => {
+          if (err) return res.json(err);
           qualification_ids[i] = result[0];
           qualification_ids = qualification_ids.filter((elem) => {
             return elem != null;
@@ -79,7 +80,7 @@ module.exports = {
             connection.query(
               "insert into job set ? ",
               {
-                companyName: newData.companyName,
+                // companyName: newData.companyName,
                 position: newData.position,
                 Description: newData.Description,
                 offer: newData.offer,

@@ -27,7 +27,7 @@ const Find = () => {
   const filter = (e) => {
     if (e.target.value !== "false") {
       const filteredJob = jobs.filter((value) => {
-        if (value.position === e.target.value) return true;
+        if (value.offer === Number(e.target.value)) return true;
         return false;
       });
 
@@ -42,7 +42,7 @@ const Find = () => {
       setJobs(originalJobs);
     } else {
       const searchedJobs = jobs.filter((value) => {
-        if (value.companyName === searchValue) {
+        if (value.position === searchValue) {
           return true;
         }
         return false;
@@ -52,11 +52,9 @@ const Find = () => {
   };
 
   const submitRequist = (e, job_id) => {
-  
     e.preventDefault();
     try {
       if (window.sessionStorage.getItem("id")) {
-        
         axios
           .post("http://localhost:5000/applicant/request", {
             job_id: job_id,
@@ -66,7 +64,7 @@ const Find = () => {
           .then((response) => {
             if (response) {
               console.log(response);
-              alert('your request is successfully sent to the admin xD');
+              alert("your request is successfully sent to the admin xD");
             }
           })
           .catch((err) => console.log("you have already requested this job"));
@@ -103,8 +101,8 @@ const Find = () => {
 
   originalJobs.forEach((currentValue, index, arr) => {
     filterOption.push(
-      <option onClick={filter} value={currentValue.position}>
-        {currentValue.position}
+      <option onClick={filter} value={currentValue.offer}>
+        {currentValue.offer}
       </option>
     );
   });
@@ -117,7 +115,7 @@ const Find = () => {
     result.push(
       <div className="job_card">
         <div className="job_name">
-          <img src={amazon} alt="" className="job-profile" />
+          {/* <img src={amazon} alt="" className="job-profile" /> */}
           <div className="job_detail">
             <h4>{currentValue.companyName}</h4>
             <h3>{currentValue.position}</h3>
@@ -126,16 +124,16 @@ const Find = () => {
         </div>
         {/* <button className='viewButton'><Link to={"/jobdetails"}> view </Link></button> */}
         <div className="div-btns">
-        <Pop data={currentValue}></Pop>
+          <Pop data={currentValue}></Pop>
 
-        <button
-          type="submit"
-          onClick={(event) => submitRequist(event, currentValue.job_id)}
-          className="viewButton"
-        >
-          Request
-          {/* <Link> Request </Link> */}
-        </button>
+          <button
+            type="submit"
+            onClick={(event) => submitRequist(event, currentValue.job_id)}
+            className="viewButton"
+          >
+            Request
+            {/* <Link> Request </Link> */}
+          </button>
         </div>
       </div>
     );
@@ -150,52 +148,51 @@ const Find = () => {
     <>
       <Header></Header>
       <div className="find-body">
-      <div>
-        <div className="search_wrapper">
-          <div className="search_box">
-            <div className="search_card">
-              <input
-                className="search_input"
-                type="text"
-                placeholder="Company Name"
-                // ref={searchValue}
-                onChange={searchChange}
-                value={searchValue}
-              />
-              <button onClick={search} className="search_button">
-                Search
+        <div>
+          <div className="search_wrapper">
+            <div className="search_box">
+              <div className="search_card">
+                <input
+                  className="search_input"
+                  type="text"
+                  placeholder="Search for Position"
+                  // ref={searchValue}
+                  onChange={searchChange}
+                  value={searchValue}
+                />
+                <button onClick={search} className="search_button">
+                  Search
+                </button>
+              </div>
+            </div>
+            <div className="filter-box">
+              <div className="filter-dropdown">
+                <select
+                  className="filter-select"
+                  id="job-function"
+                  name="job-function"
+                  // on={filter}
+                  // ref={filterValue}
+                  // value={null}
+                  // defaultValue={"choose the position"}
+                >
+                  <option value={false}>choose the Salary</option>
+                  {filterOption}
+                </select>
+              </div>
+
+              <button onClick={reset} className="search_button">
+                reset
               </button>
             </div>
-          </div>
-          <div className="filter-box">
-            <div className="filter-dropdown">
-              <select
-                className="filter-select"
-                id="job-function"
-                name="job-function"
-                // on={filter}
-                // ref={filterValue}
-                // value={null}
-                // defaultValue={"choose the position"}
-              >
-                <option value={false}>choose the Position</option>
-                {filterOption}
-              </select>
-            </div>
+            <hr></hr>
 
-            <button onClick={reset} className="search_button">
-              reset
-            </button>
+            <section className="job_list" id="jobs">
+              {/* <Link to={"/jobdetails" } > */}
+              <div>{result}</div>
+            </section>
           </div>
-          <hr></hr>
-
-          <section className="job_list" id="jobs">
-            {/* <Link to={"/jobdetails" } > */}
-            <div>{result}</div>
-          </section>
-        </div>
-        <div className="Footer-find">
-          </div>
+          <div className="Footer-find"></div>
           <Footer></Footer>
         </div>
       </div>

@@ -3,9 +3,7 @@ import axios from "axios";
 import "../requetedjobs/Tables";
 const INITIAL_STATE = [
   {
-    job_id: "",
     applicantname: "",
-    companyName: "",
     position: "",
     status: "",
     date: "",
@@ -21,28 +19,31 @@ function Table() {
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/admin/request").then((response) => {
-      if (response.data) {
-        setRequests(response.data);
+    axios
+      .get("http://localhost:5000/admin/request")
+      .then((response) => {
+        if (response.data) {
+          setRequests(response.data);
 
-        response.data.forEach((element) => {
-          axios
-            .get(`http://localhost:5000/admin/jobs/${element.job_id}`)
-            .then((response) => {
-              if (response.data) {
-                setJobs((oldData) => [...oldData, response.data]);
-              }
-            });
-          axios
-            .get(`http://localhost:5000/admin/user/${element.user_id}`)
-            .then((response) => {
-              if (response.data) {
-                setUsers((oldData) => [...oldData, response.data]);
-              }
-            });
-        });
-      }
-    }).catch(err=>console.log(err));
+          response.data.forEach((element) => {
+            axios
+              .get(`http://localhost:5000/admin/jobs/${element.job_id}`)
+              .then((response) => {
+                if (response.data) {
+                  setJobs((oldData) => [...oldData, response.data]);
+                }
+              });
+            axios
+              .get(`http://localhost:5000/admin/user/${element.user_id}`)
+              .then((response) => {
+                if (response.data) {
+                  setUsers((oldData) => [...oldData, response.data]);
+                }
+              });
+          });
+        }
+      })
+      .catch((err) => console.log(err));
   }, []);
   const accept = (e, job_id, user_id) => {
     e.preventDefault();
@@ -61,13 +62,12 @@ function Table() {
     return requests.map(({ job_id, user_id, response, date }) => {
       let flag = true;
       const job = jobs?.filter((elem) => {
-      
         if (elem[0].job_id === job_id && flag) {
-          console.log(elem[0])
+          console.log(elem[0]);
           flag = false;
           return true;
         }
-      
+
         return false;
       });
       flag = true;
@@ -81,13 +81,7 @@ function Table() {
       return (
         <tr key={job_id}>
           <td style={{ padding: "10px", border: "1px solid black" }}>
-            {job_id}
-          </td>
-          <td style={{ padding: "10px", border: "1px solid black" }}>
             {user[0] ? user[0][0].name : ""}
-          </td>
-          <td style={{ padding: "10px", border: "1px solid black" }}>
-            {job[0] ? job[0][0].companyName : ""}
           </td>
           <td style={{ padding: "10px", border: "1px solid black" }}>
             {job[0] ? job[0][0].position : ""}
