@@ -70,7 +70,7 @@ module.exports = {
                   });
                   return res
                     .status(201)
-                    .json("user successfully has been added");
+                    .json({ msg: "user successfully has been added" });
                 }
               }
             );
@@ -115,7 +115,7 @@ module.exports = {
             {
               name: newData.name,
               Email: newData.Email,
-              password: newData.password,
+              // password: newData.password,
               phone: newData.phone,
               status: newData.status,
               bio: newData.bio,

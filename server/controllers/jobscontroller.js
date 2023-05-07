@@ -18,7 +18,7 @@ module.exports = {
   //       } else {
   //         res.statusCode = 404;
   //         res.json({
-  //           message: "job not found",
+  //           msg: "job not found",
   //         });
   //       }
   //     }
@@ -66,6 +66,7 @@ module.exports = {
   createJob: (req, res) => {
     const date = new Date();
     const newData = req.body;
+    const newDataQualifications = newData.qualification.split(",");
     let qualification_ids = [];
     for (let i = 0; i < newDataQualifications.length || i === 0; i++) {
       connection.query(
@@ -103,7 +104,7 @@ module.exports = {
                   });
                   return res
                     .status(201)
-                    .json("job has been added successfully");
+                    .json({ msg: "job has been added successfully" });
                 }
               }
             );
@@ -186,10 +187,10 @@ module.exports = {
       (err, result) => {
         if (err) {
           res.status(500).json({
-            message: "failed to delete the job",
+            msg: "failed to delete the job",
           });
         } else {
-          res.status(200).json({ messge: "job has been deleted successfully" });
+          res.status(200).json({ msg: "job has been deleted successfully" });
         }
       }
     );

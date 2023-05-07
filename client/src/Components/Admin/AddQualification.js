@@ -4,35 +4,30 @@ import { FaWindowClose } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 export default function Pop() {
-  const [addjob, setAddjob] = useState({
-    position: "",
-    companyName: "",
-    Description: "",
-    offer: "",
+  const [addQualification, setAddQualification] = useState({
+    qualification_desc: "",
 
-    max_candidate_number: "",
     qualification: "",
   });
 
   // destructing
   const {
-    position,
-    companyName,
-    Description,
-    offer,
-    date,
-    max_candidate_number,
+    qualification_desc,
+
     qualification,
-  } = addjob;
+  } = addQualification;
   const onInputChange = (e) => {
-    setAddjob({ ...addjob, [e.target.name]: e.target.value });
+    setAddQualification({
+      ...addQualification,
+      [e.target.name]: e.target.value,
+    });
   };
-  const addjobbtn = async (e) => {
+  const addQualificationbtn = async (e) => {
     //  console.log(e.target[0].value);
     e.preventDefault();
     // alert("new job offer is added");
     await axios
-      .post("http://localhost:5000/admin/jobs", addjob)
+      .post("http://localhost:5000/admin/qualifications", addQualification)
       .then((res) => alert(res.data.msg))
       .catch((err) => console.log(err));
   };
@@ -49,12 +44,12 @@ export default function Pop() {
   return (
     <div>
       <button className="icon-button" onClick={handleClick}>
-        <FaPlus></FaPlus> &nbsp;Add Job Offer
+        <FaPlus></FaPlus> &nbsp;Add Qualification
       </button>
 
       {/* 👇️ show elements on click */}
       {isShown ? (
-        <form onSubmit={(e) => addjobbtn(e)}>
+        <form onSubmit={(e) => addQualificationbtn(e)}>
           <div className="add-job-Contianer" id="job">
             <div className="title">
               <div className="close" onClick={handleClick}>
@@ -62,36 +57,12 @@ export default function Pop() {
                   <FaWindowClose></FaWindowClose>
                 </h3>
               </div>
-              <h2>Add job offer</h2>
+              <h2>Add Qualification</h2>
               <hr className="add-job-hr"></hr>
             </div>
 
             <div className="Job-content">
-              {/* <label>
-                {" "}
-                companyName <input  name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
-              </label> */}
-              <label>
-                {" "}
-                position
-                <input
-                  id="inp"
-                  name="position"
-                  value={position}
-                  type="text"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-              </label>
-              <label> Description</label>
-              <textarea
-                name="Description"
-                value={Description}
-                type="text-area"
-                rows="4"
-                cols="50"
-                onChange={(e) => onInputChange(e)}
-              ></textarea>
-              <label> Qualifications</label>
+              <label> Qualification</label>
               <textarea
                 name="qualification"
                 value={qualification}
@@ -100,7 +71,16 @@ export default function Pop() {
                 cols="50"
                 onChange={(e) => onInputChange(e)}
               ></textarea>
-              <label>offer</label>{" "}
+              <label> Qualification Description</label>
+              <textarea
+                name="qualification_desc"
+                value={qualification_desc}
+                type="text-area"
+                rows="4"
+                cols="50"
+                onChange={(e) => onInputChange(e)}
+              ></textarea>
+              {/* <label>offer</label>{" "}
               <input
                 name="offer"
                 value={offer}
@@ -117,8 +97,8 @@ export default function Pop() {
                   type="text"
                   onChange={(e) => onInputChange(e)}
                 ></input>
-              </label>
-              <button className="post-button">Post now!</button>
+              </label> */}
+              <button className="post-button">ADD</button>
             </div>
           </div>
         </form>

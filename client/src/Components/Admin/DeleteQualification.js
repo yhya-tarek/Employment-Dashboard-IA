@@ -6,24 +6,25 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 export default function Pop() {
   const enteredvalue = useRef("");
-  const [deletejob, setdeletejob] = useState({
-    user_id: "",
+  const [deleteQualification, setDeleteQualification] = useState({
+    qualificationId: "",
   });
 
   // destructing
-  const { user_id } = deletejob;
+  const { qualificationId } = deleteQualification;
   const onInputChange = (e) => {
-    //   setdeletejob(e.target.value);
+    //   setDeleteQualification(e.target.value);
 
-    setdeletejob(enteredvalue.current.value);
-    console.log("value enterd", deletejob);
+    setDeleteQualification(enteredvalue.current.value);
+    console.log("value enterd", deleteQualification);
   };
-  const deleteemployeebtn = async (e) => {
+  const deleteQualificationBtn = async (e) => {
     //  console.log(e.target[0].value);
     e.preventDefault();
-    // alert(' an employee has been deleted!');
     await axios
-      .delete(`http://localhost:5000/admin/user/${deletejob.user_id}`)
+      .delete(
+        `http://localhost:5000/admin/qualifications/${deleteQualification.qualificationId}`
+      )
       .then((res) => alert(res.data.msg))
       .catch((err) => console.log(err));
   };
@@ -40,12 +41,12 @@ export default function Pop() {
   return (
     <div>
       <button className="icon-button" onClick={handleClick}>
-        <FaPlus></FaPlus> &nbsp;Delete employee
+        <FaPlus></FaPlus> &nbsp;Delete Qualification
       </button>
 
       {/* 👇️ show elements on click */}
       {isShown ? (
-        <form onSubmit={(e) => deleteemployeebtn(e)}>
+        <form onSubmit={(e) => deleteQualificationBtn(e)}>
           <div className="add-job-Contianer" id="job">
             <div className="title">
               <div className="close" onClick={handleClick}>
@@ -53,22 +54,25 @@ export default function Pop() {
                   <FaWindowClose></FaWindowClose>
                 </h3>
               </div>
-              <h2>Delete an employee</h2>
+              <h2>Delete Qualification</h2>
               <hr className="add-job-hr"></hr>
             </div>
 
             <div className="Job-content">
               <label>
                 {" "}
-                employee id
+                Qualification Id
                 <input
                   id="inp"
                   ref={enteredvalue}
-                  name="user_id"
-                  value={user_id}
+                  name="qualificationId"
+                  value={qualificationId}
                   type="text"
                   onChange={(e) =>
-                    setdeletejob({ ...deletejob, user_id: e.target.value })
+                    setDeleteQualification({
+                      ...deleteQualification,
+                      qualificationId: e.target.value,
+                    })
                   }
                 ></input>
               </label>

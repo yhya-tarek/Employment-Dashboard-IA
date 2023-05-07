@@ -1,6 +1,9 @@
 import "../../style/Dashboard.css";
 import { FaPlus } from "react-icons/fa";
 import DeleteEmployee from "../Admin/DeleteEmployee";
+import DeleteQualification from "../Admin/DeleteQualification";
+import AddQualification from "../Admin/AddQualification";
+import UpdateQualification from "../Admin/UpdateQualification";
 import UpdateJob from "../Admin/UpdateJob";
 import UpdateEmployee from "../Admin/UpdateEmployee";
 import Table from "../Table";
@@ -65,6 +68,15 @@ export const Dashboard = () => {
         <UpdateEmployee>
           <FaPlus></FaPlus>
         </UpdateEmployee>
+        <AddQualification>
+          <FaPlus></FaPlus>
+        </AddQualification>
+        <DeleteQualification>
+          <FaPlus></FaPlus>
+        </DeleteQualification>
+        <UpdateQualification>
+          <FaPlus></FaPlus>
+        </UpdateQualification>
       </div>
 
       <Table></Table>

@@ -14,7 +14,7 @@ router.get("/", getQualifications);
 router.post("/", createQualification);
 
 //GET SPECIFIC QUALIFICATION
-router.get("/:id", authLogin, getQualification);
+router.get("/:id", getQualification);
 
 //UPDATE QUALIFICATION
 router.put("/:id", updateQualification);

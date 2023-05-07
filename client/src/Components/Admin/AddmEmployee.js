@@ -35,9 +35,10 @@ export default function Pop() {
   const onSubmit = async (e) => {
     //  console.log(e.target[0].value);
     e.preventDefault();
-    alert("new employee is added");
+    // alert("new employee is added");
     await axios
       .post("http://localhost:5000/admin/user", addemployee)
+      .then((res) => alert(res.data.msg))
       .catch((err) => console.log(err));
   };
   return (
@@ -160,7 +161,7 @@ export default function Pop() {
               </label>
 
               <button className="add-button">Add now!</button>
-              <button className="delete-button">Delete now!</button>
+              {/* <button className="delete-button">Delete now!</button> */}
             </div>
           </div>
         </form>

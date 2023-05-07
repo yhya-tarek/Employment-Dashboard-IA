@@ -21,11 +21,10 @@ module.exports = {
       },
       (err, result, fields) => {
         if (err) {
-          return (res.statusCode = 400);
-          return res.json(err);
+          return res.status(400).json(err);
         } else {
           return res.json({
-            message: "qualification has been created successfully",
+            msg: "qualification has been created successfully",
           });
         }
       }
@@ -42,7 +41,7 @@ module.exports = {
           return res.status(200).json(result[0]);
         } else {
           return res.status(404).json({
-            message: "qualification not found",
+            msg: "qualification not found",
           });
         }
       }
@@ -66,7 +65,7 @@ module.exports = {
         if (err) {
           return res
             .status(500)
-            .json({ message: "failed to update the qualification" });
+            .json({ msg: "failed to update the qualification" });
         } else {
           return res.status(200).json("qualification updated");
         }
@@ -89,12 +88,12 @@ module.exports = {
         if (err) {
           return res.status(500).json({
             err,
-            message: "failed to delete the qualification",
+            msg: "failed to delete the qualification",
           });
         } else {
           return res
             .status(200)
-            .json({ message: "qualification has been deleted successfully" });
+            .json({ msg: "qualification has been deleted successfully" });
         }
       }
     );
