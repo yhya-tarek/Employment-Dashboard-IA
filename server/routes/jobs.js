@@ -20,7 +20,7 @@ router.post("/", createJob);
 router.get("/:job_id", getJob);
 
 //UPDATE JOB
-router.put("/:id", authLogin, authRole("admin"), updateJob);
+router.put("/:id", updateJob);
 
 // DELETE JOB
 router.delete("/:id", deleteJob);

@@ -32,15 +32,16 @@ module.exports = {
     const newData = req.body;
     let skill_ids = [];
     // console.log(i);
-    for (let i = 0; i < newData.skill.length || i === 0; i++) {
+    const skills = newData.skill.split(",");
+    for (let i = 0; i < skills.length || i === 0; i++) {
       connection.query(
-        `select skill_id from skill where skill = "${newData.skill[i]}"`,
+        `select skill_id from skill where skill = "${skills[i]}"`,
         async (err, result, fields) => {
           skill_ids[i] = result[0];
           skill_ids = skill_ids.filter((elem) => {
             return elem != null;
           });
-          if (i >= newData.skill.length - 1) {
+          if (i >= skills.length - 1) {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             connection.query(
               "insert into user set?",
@@ -81,12 +82,33 @@ module.exports = {
 
   updateUser: (req, res) => {
     const { user_id } = req.params;
+    let skill_ids = [];
     const sql = `SELECT * FROM user where user_id = ${user_id}`;
     connection.query(sql, (err, result, fields) => {
       if (err) {
         return res.status(400).json(err);
       } else if (result[0]) {
         const newData = req.body;
+        const skills = newData.skill.split(",");
+        for (let i = 0; i < skills.length || i === 0; i++) {
+          connection.query(
+            `select skill_id from skill where skill = "${skills[i]}"`,
+            async (err, result, fields) => {
+              skill_ids[i] = result[0];
+              skill_ids = skill_ids.filter((elem) => {
+                return elem != null;
+              });
+            }
+          );
+          if (i >= skills.length - 1) {
+            connection.query(
+              `delete from user_skills where user_id in (${user_id})`,
+              (err, result, fields) => {
+                if (err) return res.status(500).send(err);
+              }
+            );
+          }
+        }
         connection.query(
           "update user set? where?",
           [
@@ -102,9 +124,19 @@ module.exports = {
           ],
           (err) => {
             if (err) {
-              res.status(400).json({ msg: err.sqlMessage });
+              return res.status(500).json(err);
             } else {
-              res.status(200).json({ msg: "updated successfully" });
+              skill_ids.forEach((elem) => {
+                const sql = `insert into user_skills (skill_id, user_id) values (${elem.skill_id}, ${user_id})`;
+                connection.query(sql, (err, result) => {
+                  if (err) {
+                    return res.status(500).json(err);
+                  }
+                });
+              });
+              return res
+                .status(201)
+                .json({ msg: "user has been updated successfully" });
             }
           }
         );

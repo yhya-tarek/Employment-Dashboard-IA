@@ -1,6 +1,8 @@
 import "../../style/Dashboard.css";
 import { FaPlus } from "react-icons/fa";
 import DeleteEmployee from "../Admin/DeleteEmployee";
+import UpdateJob from "../Admin/UpdateJob";
+import UpdateEmployee from "../Admin/UpdateEmployee";
 import Table from "../Table";
 import Image from "../../assets/images/t2.avif";
 import { Footer } from "../shared/Footer";
@@ -45,18 +47,24 @@ export const Dashboard = () => {
       ></div>
       <div className="sub-mini-control">
         {/* <Search></Search> */}
-        <AddJob  href="#">
+        <AddJob href="#">
           <FaPlus></FaPlus>
         </AddJob>
         <DeleteJob>
           <FaPlus></FaPlus>
         </DeleteJob>
+        <UpdateJob>
+          <FaPlus></FaPlus>
+        </UpdateJob>
         <AddEmployee href="#">
           <FaPlus></FaPlus>
         </AddEmployee>
         <DeleteEmployee>
           <FaPlus></FaPlus>
         </DeleteEmployee>
+        <UpdateEmployee>
+          <FaPlus></FaPlus>
+        </UpdateEmployee>
       </div>
 
       <Table></Table>

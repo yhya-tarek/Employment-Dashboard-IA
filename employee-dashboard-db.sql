@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 01:24 PM
+-- Generation Time: May 07, 2023 at 04:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `job` (
   `job_id` int(11) NOT NULL,
-  `companyName` text NOT NULL,
   `position` varchar(50) NOT NULL,
   `Description` varchar(10000) NOT NULL,
   `offer` int(11) NOT NULL,
@@ -42,9 +41,8 @@ CREATE TABLE `job` (
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`job_id`, `companyName`, `position`, `Description`, `offer`, `max_candidate_number`, `actualCandidateNum`, `creation_date`) VALUES
-(3, 'apple', 'hr', 'welocme to our company and have some fun with us', 20000, 5, 0, '2023-04-05'),
-(11, 'samsung', 'ceo', 'in this company all we care about is our customers and we want to make them happy and pleased with our products', 25000, 50, 0, '2023-04-24');
+INSERT INTO `job` (`job_id`, `position`, `Description`, `offer`, `max_candidate_number`, `actualCandidateNum`, `creation_date`) VALUES
+(11, 'ceo', 'in this company all we care about is our customers and we want to make them happy and pleased with our products', 25000, 50, 0, '2023-04-24');
 
 -- --------------------------------------------------------
 
@@ -62,7 +60,6 @@ CREATE TABLE `job_qualifications` (
 --
 
 INSERT INTO `job_qualifications` (`qualification_id`, `job_id`) VALUES
-(1, 3),
 (3, 11);
 
 -- --------------------------------------------------------
@@ -98,6 +95,13 @@ CREATE TABLE `request_job` (
   `response` enum('approved','declined','no response yet') NOT NULL,
   `date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `request_job`
+--
+
+INSERT INTO `request_job` (`user_id`, `job_id`, `response`, `date`) VALUES
+(10, 11, 'declined', '2023-04-26');
 
 -- --------------------------------------------------------
 
@@ -143,7 +147,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `Email`, `password`, `phone`, `status`, `type`, `image_url`, `bio`) VALUES
-(6, 'yhyatarek', '1home@gmail.com', '$2b$10$/.8ML8dLomsrE/EFNcBZuegRMqUeSSIJKQ1YFdDySaCraw.3.4voi', 498558, 'active', 'admin', '', 'hello to my account');
+(6, 'yhyatarek', '1home@gmail.com', '$2b$10$/.8ML8dLomsrE/EFNcBZuegRMqUeSSIJKQ1YFdDySaCraw.3.4voi', 498558, 'active', 'admin', '', 'hello to my account'),
+(10, 'hamid', '12home@gmail.com', '$2b$10$8A17TJCIdIdwkCWDc5aMkuwAPs4axJbwWnD/tH8sztfhYETqQr7/.', 110121, 'active', 'applicant', '', '3rd-year Computer Science & Artificial Intelligence student having alot of interest about new technologies. \n I\'m a Google Certified Data Analyst who loves to Discover what the data storytelling and find the best solution . Right now , I\'m studying Machine learning on coursera ');
 
 -- --------------------------------------------------------
 
@@ -155,6 +160,15 @@ CREATE TABLE `user_skills` (
   `skill_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_skills`
+--
+
+INSERT INTO `user_skills` (`skill_id`, `user_id`) VALUES
+(5, 10),
+(4, 10),
+(2, 10);
 
 --
 -- Indexes for dumped tables
@@ -215,7 +229,7 @@ ALTER TABLE `user_skills`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `qualification`
@@ -233,7 +247,7 @@ ALTER TABLE `skill`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

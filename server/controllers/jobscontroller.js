@@ -67,16 +67,16 @@ module.exports = {
     const date = new Date();
     const newData = req.body;
     let qualification_ids = [];
-    for (let i = 0; i < newData.qualification.length || i === 0; i++) {
+    for (let i = 0; i < newDataQualifications.length || i === 0; i++) {
       connection.query(
-        `select qualification_id from qualification where qualification = "${newData.qualification[i]}"`,
+        `select qualification_id from qualification where qualification = "${newDataQualifications[i]}"`,
         (err, result, fields) => {
           if (err) return res.json(err);
           qualification_ids[i] = result[0];
           qualification_ids = qualification_ids.filter((elem) => {
             return elem != null;
           });
-          if (i >= newData.qualification.length - 1) {
+          if (i >= newDataQualifications.length - 1) {
             connection.query(
               "insert into job set ? ",
               {
@@ -116,20 +116,24 @@ module.exports = {
   updateJob: (req, res) => {
     const { id } = req.params;
     const newData = req.body;
+    const newDataQualifications = newData.qualification.split(",");
     let qualification_ids = [];
-    for (let i = 0; i < newData.qualification.length || i === 0; i++) {
+    for (let i = 0; i < newDataQualifications.length || i === 0; i++) {
       connection.query(
-        `select qualification_id from qualification where qualification = "${newData.qualification[i]}"`,
+        `select qualification_id from qualification where qualification = "${newDataQualifications[i]}"`,
         (err, result, fields) => {
+          // if (err || !result[0]) {
+          //   return res.status(500).json(err);
+          // } else {
           qualification_ids[i] = result[0];
           qualification_ids = qualification_ids.filter((elem) => {
             return elem != null;
           });
-          if (i >= newData.qualification.length - 1) {
+          if (i >= newDataQualifications.length - 1) {
             connection.query(
               `delete from job_qualifications where job_id in (${id})`,
               (err, result, fields) => {
-                if (err) throw res.status(500).send(err);
+                if (err) return res.status(500).send(err);
               }
             );
             connection.query(
@@ -163,6 +167,7 @@ module.exports = {
             );
           }
         }
+        // }
       );
     }
   },

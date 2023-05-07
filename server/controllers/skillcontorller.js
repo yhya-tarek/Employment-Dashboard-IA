@@ -14,15 +14,15 @@ module.exports = {
 
   getSkill: (req, res) => {
     const { user_id } = req.params;
-    sql = `select * from skill inner join user_skills on skill.skill_id = user_skills.skill_id`;
+    sql = `select * from skill inner join user_skills on skill.skill_id = user_skills.skill_id where user_id = ${user_id}`;
     connection.query(sql, (err, result) => {
       if (err) {
         console.log(err);
         res.status(404).json("failed to read files");
       } else {
-        if (!result[0]) {
-          return res.status(404).json({ msg: "Not Found" });
-        }
+        // if (!result[0]) {
+        //   return res.status(404).json({ msg: "Not Found" });
+        // }
         return res.status(200).json(result);
       }
     });

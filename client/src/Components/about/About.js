@@ -45,7 +45,7 @@ const About = () => {
           <img src={about} alt="" className="about__img" />
           <div className="about__data">
             <Info />
-            <p className="about__description">
+            <p className="about__description" >
               <li>{data.bio}</li>
             </p>
           </div>

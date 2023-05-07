@@ -4,6 +4,7 @@ import "../requetedjobs/Tables";
 const INITIAL_STATE = [
   {
     applicantname: "",
+    userStatus: "",
     position: "",
     status: "",
     date: "",
@@ -59,7 +60,7 @@ function Table() {
   };
 
   const renderUsers = () => {
-    return requests.map(({ job_id, user_id, response, date }) => {
+    return requests.map(({ job_id, user_id, response, date, userStatus }) => {
       let flag = true;
       const job = jobs?.filter((elem) => {
         if (elem[0].job_id === job_id && flag) {
@@ -82,6 +83,9 @@ function Table() {
         <tr key={job_id}>
           <td style={{ padding: "10px", border: "1px solid black" }}>
             {user[0] ? user[0][0].name : ""}
+          </td>
+          <td style={{ padding: "10px", border: "1px solid black" }}>
+            {user[0] ? user[0][0].status : ""}
           </td>
           <td style={{ padding: "10px", border: "1px solid black" }}>
             {job[0] ? job[0][0].position : ""}
