@@ -13,7 +13,6 @@ export const Banner = () => {
   });
   return (
     <div className="container">
-      {/* <img src={image} className="banner" alt="banner" /> */}
       <div
         style={{
           backgroundImage: `url(${image})`,

@@ -23,7 +23,6 @@ export default function Pop() {
     });
   };
   const updateQualificationBtn = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
     await axios
       .put(
@@ -84,11 +83,6 @@ export default function Pop() {
       {/* 👇️ show elements on click */}
       {isShown ? (
         <>
-          {/* <form onSubmit={(e) => getQualification(e)}>
-            <div className="add-job-Contianer" id="job">
-              <button className="post-button">Post now!</button>
-            </div>
-          </form> */}
           <form onSubmit={(e) => updateQualificationBtn(e)}>
             <div className="add-job-Contianer" id="job">
               <div className="title">
@@ -102,10 +96,6 @@ export default function Pop() {
               </div>
 
               <div className="Job-content">
-                {/* <label>
-                {" "}
-                companyName <input  name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
-            </label> */}
                 <form>
                   <label>
                     {" "}
@@ -136,17 +126,7 @@ export default function Pop() {
                     ) : null}
                   </label>
                 </form>
-                {/* <label>
-                  {" "}
-                  position
-                  <input
-                    id="inp"
-                    name="position"
-                    value={position}
-                    type="text"
-                    onChange={(e) => onInputChange(e)}
-                  ></input>
-                </label> */}
+
                 <label> Qualification</label>
                 <textarea
                   name="qualification"
@@ -165,24 +145,7 @@ export default function Pop() {
                   cols="50"
                   onChange={(e) => onInputChange(e)}
                 ></textarea>
-                {/* <label>offer</label>{" "}
-                <input
-                  name="offer"
-                  value={offer}
-                  type="text"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-                <label>
-                  {" "}
-                  Max Candidtate Number
-                  <input
-                    id="inp"
-                    name="max_candidate_number"
-                    value={max_candidate_number}
-                    type="text"
-                    onChange={(e) => onInputChange(e)}
-                  ></input>
-                </label> */}
+
                 <button className="post-button">Update</button>
               </div>
             </div>

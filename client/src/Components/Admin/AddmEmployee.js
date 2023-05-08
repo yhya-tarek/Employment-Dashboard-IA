@@ -28,14 +28,9 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
   const onSubmit = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
-    // alert("new employee is added");
     await axios
       .post("http://localhost:5000/admin/user", addemployee)
       .then((res) => alert(res.data.msg))
@@ -161,7 +156,6 @@ export default function Pop() {
               </label>
 
               <button className="add-button">Add now!</button>
-              {/* <button className="delete-button">Delete now!</button> */}
             </div>
           </div>
         </form>
@@ -171,18 +165,3 @@ export default function Pop() {
     </div>
   );
 }
-
-// function Box() {
-//   return (
-//     <div>
-//       <h2>Box</h2>
-//     </div>
-//   );
-// }
-// const Upload =()=>{
-//           var loadFile = function(event) {
-//               var image = document.getElementById('output');
-//               image.src=URL.createObjectURL(event.target.files[0]);
-
-//           }
-//         };

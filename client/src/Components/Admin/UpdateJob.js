@@ -29,7 +29,6 @@ export default function Pop() {
     setAddjob({ ...addjob, [e.target.name]: e.target.value });
   };
   const updateJobBtn = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
     await axios
       .put(`http://localhost:5000/admin/jobs/${addjob.jobId}`, addjob)
@@ -54,7 +53,6 @@ export default function Pop() {
         if (res.data) {
           axios.get("http://localhost:5000/qualifications").then((response) => {
             if (response.data) {
-              //   console.log(response.data);
               const qual = [];
               qual.push(
                 response.data.filter((value) => {
@@ -88,9 +86,6 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   return (
@@ -102,11 +97,6 @@ export default function Pop() {
       {/* 👇️ show elements on click */}
       {isShown ? (
         <>
-          {/* <form onSubmit={(e) => getJob(e)}>
-            <div className="add-job-Contianer" id="job">
-              <button className="post-button">Post now!</button>
-            </div>
-          </form> */}
           <form onSubmit={(e) => updateJobBtn(e)}>
             <div className="add-job-Contianer" id="job">
               <div className="title">
@@ -120,10 +110,6 @@ export default function Pop() {
               </div>
 
               <div className="Job-content">
-                {/* <label>
-                {" "}
-                companyName <input  name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
-            </label> */}
                 <form>
                   <label>
                     {" "}

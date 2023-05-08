@@ -13,15 +13,11 @@ export default function Pop() {
   // destructing
   const { user_id } = deletejob;
   const onInputChange = (e) => {
-    //   setdeletejob(e.target.value);
-
     setdeletejob(enteredvalue.current.value);
     console.log("value enterd", deletejob);
   };
   const deleteemployeebtn = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
-    // alert(' an employee has been deleted!');
     await axios
       .delete(`http://localhost:5000/admin/user/${deletejob.user_id}`)
       .then((res) => alert(res.data.msg))
@@ -32,9 +28,6 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   return (

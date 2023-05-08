@@ -31,7 +31,6 @@ module.exports = {
   addNewUser: (req, res) => {
     const newData = req.body;
     let skill_ids = [];
-    // console.log(i);
     const skills = newData.skill.split(",");
     for (let i = 0; i < skills.length || i === 0; i++) {
       connection.query(
@@ -51,7 +50,6 @@ module.exports = {
                 password: hashedPassword,
                 phone: newData.phone,
                 status: newData.status,
-                // image_url: newData.image_url,
                 type: newData.type,
                 bio: newData.bio,
               },

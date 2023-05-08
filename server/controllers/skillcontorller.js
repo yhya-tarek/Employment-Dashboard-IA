@@ -20,9 +20,6 @@ module.exports = {
         console.log(err);
         res.status(404).json("failed to read files");
       } else {
-        // if (!result[0]) {
-        //   return res.status(404).json({ msg: "Not Found" });
-        // }
         return res.status(200).json(result);
       }
     });

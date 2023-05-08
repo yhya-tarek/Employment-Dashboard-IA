@@ -38,7 +38,6 @@ const Frontend = () => {
 
           <div>
             <h3 className="skills__name">{res.skill}</h3>
-            {/* <span className='skills__level'>{console.log(skill[0].skill)}</span> */}
           </div>
         </div>
       </div>

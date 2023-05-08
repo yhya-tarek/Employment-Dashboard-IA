@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./pop.css";
 
-// import '../style/NotificatonButton.css';
-// import { FaBell } from 'react-icons/fa';
 export default function Pop(props) {
   const [isShown, setIsShown] = useState(false);
   const data = props.data;
@@ -10,15 +8,11 @@ export default function Pop(props) {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   for (const qual in data.qualifications) {
     result.push(
       <div>
-   
         <div className="requirement">
           <i class="bx bx-badge-check"></i>
           <p className="req">{data.qualifications[qual].qualification}</p>
@@ -50,8 +44,6 @@ export default function Pop(props) {
               <hr />
               <p className="aboutp">
                 <i class="bx bx-badge-check"></i> SALARY : {data.offer}$ ,
-                {/* <i class="bx bx-badge-check"></i> FULL TIME ,
-                <i class="bx bx-badge-check"></i> ADSFASDF */}
               </p>
             </div>
             <h2>Required experience </h2>
@@ -66,11 +58,3 @@ export default function Pop(props) {
     </div>
   );
 }
-
-// function Box() {
-//   return (
-//     <div>
-//       <h2>Box</h2>
-//     </div>
-//   );
-// }

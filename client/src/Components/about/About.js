@@ -14,7 +14,7 @@ const About = () => {
 
   useEffect(() => {
     axios
-      // el url sah wlla la
+
       .get(
         `http://localhost:5000/applicant/user/${window.sessionStorage.getItem(
           "id"
@@ -33,30 +33,27 @@ const About = () => {
   console.log(data);
   return (
     <>
-    
       <Header></Header>
       <div className="about-body">
-      <section className="about__section" id="about">
-        <div className="name">
-          <h1>{data.name}</h1>
-        </div>
-
-        <div className="information">
-          <img src={about} alt="" className="about__img" />
-          <div className="about__data">
-            <Info />
-            <p className="about__description" >
-              <li>{data.bio}</li>
-            </p>
+        <section className="about__section" id="about">
+          <div className="name">
+            <h1>{data.name}</h1>
           </div>
-        </div>
-      
-        <Skills />
-      
-      </section>
+
+          <div className="information">
+            <img src={about} alt="" className="about__img" />
+            <div className="about__data">
+              <Info />
+              <p className="about__description">
+                <li>{data.bio}</li>
+              </p>
+            </div>
+          </div>
+
+          <Skills />
+        </section>
       </div>
       <Footer></Footer>
-      {/* <Footer></Footer> */}
     </>
   );
 };

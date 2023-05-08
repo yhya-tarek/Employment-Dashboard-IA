@@ -1,49 +1,12 @@
 const connection = require("../db/connection")();
 
 module.exports = {
-  // getJobs: (req, res) => {
-  //   connection.query("select * from job", (err, result, fields) => {
-  //     res.json(result);
-  //   });
-  // },
-
-  // getJob: (req, res) => {
-  //   const { id } = req.params;
-  //   connection.query(
-  //     "select * from job where ? ",
-  //     { job_id: id },
-  //     (err, result, fields) => {
-  //       if (result[0]) {
-  //         res.json(result[0]);
-  //       } else {
-  //         res.statusCode = 404;
-  //         res.json({
-  //           msg: "job not found",
-  //         });
-  //       }
-  //     }
-  //   );
-  // },
-
   getJobs: (req, res) => {
     const sql = ` SELECT *
                   FROM job
                   `;
     connection.query(sql, (err, data) => {
       if (err) return res.json(err);
-
-      // for (const k in data) {
-      //   const copydata = Object.keys(data[k])
-      //     .filter((key) => key.includes("qualification"))
-      //     .reduce((cur, key) => {
-      //       return Object.assign(cur, { [key]: data[k][key] });
-      //     }, {});
-      //   console.log(data);
-      //   delete data[k].qualification;
-      //   delete data[k].qualification_id;
-      //   delete data[k].qualification_desc;
-      //   data[k].qualifications = copydata;
-      // }
       return res.json(data);
     });
   },
@@ -79,9 +42,8 @@ module.exports = {
           });
           if (i >= newDataQualifications.length - 1) {
             connection.query(
-              "insert into job set ? ",
+              "insert into job set ?",
               {
-                // companyName: newData.companyName,
                 position: newData.position,
                 Description: newData.Description,
                 offer: newData.offer,
@@ -123,9 +85,6 @@ module.exports = {
       connection.query(
         `select qualification_id from qualification where qualification = "${newDataQualifications[i]}"`,
         (err, result, fields) => {
-          // if (err || !result[0]) {
-          //   return res.status(500).json(err);
-          // } else {
           qualification_ids[i] = result[0];
           qualification_ids = qualification_ids.filter((elem) => {
             return elem != null;

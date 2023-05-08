@@ -10,7 +10,6 @@ const capitalize = (word) => {
 function Table() {
   const navigate = useNavigate();
   const [any, setAny] = useState([]);
-  // console.log(any)
   useEffect(() => {
     const win = window.sessionStorage;
     if (!win.getItem("auth")) {
@@ -26,7 +25,6 @@ function Table() {
       .then((response) => {
         if (response.data) {
           setAny(response.data);
-          // console.log(response.data)
         }
       })
       .catch((error) => {

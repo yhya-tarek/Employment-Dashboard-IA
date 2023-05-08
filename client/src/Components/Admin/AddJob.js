@@ -41,9 +41,6 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   return (
@@ -67,10 +64,6 @@ export default function Pop() {
             </div>
 
             <div className="Job-content">
-              {/* <label>
-                {" "}
-                companyName <input  name="companyName" value={companyName} type="text" onChange={e =>onInputChange(e)}></input>
-              </label> */}
               <label>
                 {" "}
                 position

@@ -23,9 +23,7 @@ export default function Pop() {
     });
   };
   const addQualificationbtn = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
-    // alert("new job offer is added");
     await axios
       .post("http://localhost:5000/admin/qualifications", addQualification)
       .then((res) => alert(res.data.msg))
@@ -36,9 +34,6 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   return (
@@ -80,24 +75,7 @@ export default function Pop() {
                 cols="50"
                 onChange={(e) => onInputChange(e)}
               ></textarea>
-              {/* <label>offer</label>{" "}
-              <input
-                name="offer"
-                value={offer}
-                type="text"
-                onChange={(e) => onInputChange(e)}
-              ></input>
-              <label>
-                {" "}
-                Max Candidtate Number
-                <input
-                  id="inp"
-                  name="max_candidate_number"
-                  value={max_candidate_number}
-                  type="text"
-                  onChange={(e) => onInputChange(e)}
-                ></input>
-              </label> */}
+
               <button className="post-button">ADD</button>
             </div>
           </div>

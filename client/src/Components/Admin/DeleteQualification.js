@@ -12,14 +12,8 @@ export default function Pop() {
 
   // destructing
   const { qualificationId } = deleteQualification;
-  const onInputChange = (e) => {
-    //   setDeleteQualification(e.target.value);
 
-    setDeleteQualification(enteredvalue.current.value);
-    console.log("value enterd", deleteQualification);
-  };
   const deleteQualificationBtn = async (e) => {
-    //  console.log(e.target[0].value);
     e.preventDefault();
     await axios
       .delete(
@@ -33,9 +27,6 @@ export default function Pop() {
   const handleClick = (event) => {
     // 👇️ toggle shown state
     setIsShown((current) => !current);
-
-    // 👇️ or simply set it to true
-    // setIsShown(true);
   };
 
   return (

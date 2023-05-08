@@ -33,9 +33,7 @@ export const Dashboard = () => {
           <div className="title-container">
             <h4>Admin Dashboard</h4>
           </div>
-          <div className="mini-control">
-            {/* <NotificationButton></NotificationButton> */}
-          </div>
+          <div className="mini-control"></div>
           <Button></Button>
         </div>
       </nav>
@@ -82,37 +80,6 @@ export const Dashboard = () => {
       <Table></Table>
 
       <Footer></Footer>
-
-      {/* <div className='table-content'>
-        <div id="data-table">
-        <table >
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody id="html-data-table">
-                <tr>
-                    <td>
-                        10
-                    </td>
-                    <td>
-                        SALAH
-                    </td>
-                    <td>designer</td>
-                    <td>pending</td>
-                </tr>
-            </tbody>
-
-            
-        
-        </table> 
-        <Table></Table>
-    </div>
-        </div> */}
     </>
   );
 };
