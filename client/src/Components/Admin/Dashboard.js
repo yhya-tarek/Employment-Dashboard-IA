@@ -13,7 +13,7 @@ import { Button } from "../Home/LgnButton";
 import NotificationButton from "../NotificationButton";
 import DeleteJob from "../Admin/DeleteJob";
 import AddJob from "./AddJob";
-import AddEmployee from "../Admin/AddmEmployee";
+import AddEmployee from "../Admin/AddEmployee";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

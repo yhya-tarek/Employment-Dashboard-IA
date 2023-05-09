@@ -147,6 +147,12 @@ module.exports = {
   deleteUser: (req, res) => {
     const { user_id } = req.params;
     connection.query(
+      `delete from user_skills where user_id in (${user_id})`,
+      (err, result, fields) => {
+        if (err) throw res.status(500).send(err);
+      }
+    );
+    connection.query(
       "delete from user where ?",
       { user_id: user_id },
       (err) => {

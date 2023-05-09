@@ -68,6 +68,7 @@ export default function Pop() {
                 {" "}
                 position
                 <input
+                  required
                   id="inp"
                   name="position"
                   value={position}
@@ -77,6 +78,7 @@ export default function Pop() {
               </label>
               <label> Description</label>
               <textarea
+                required
                 name="Description"
                 value={Description}
                 type="text-area"
@@ -86,6 +88,7 @@ export default function Pop() {
               ></textarea>
               <label> Qualifications</label>
               <textarea
+                required
                 name="qualification"
                 value={qualification}
                 type="text-area"
@@ -95,6 +98,7 @@ export default function Pop() {
               ></textarea>
               <label>offer</label>{" "}
               <input
+                required
                 name="offer"
                 value={offer}
                 type="text"
@@ -104,6 +108,7 @@ export default function Pop() {
                 {" "}
                 Max Candidtate Number
                 <input
+                  required
                   id="inp"
                   name="max_candidate_number"
                   value={max_candidate_number}

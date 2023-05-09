@@ -48,15 +48,21 @@ function Table() {
   }, []);
   const accept = (e, job_id, user_id) => {
     e.preventDefault();
-    axios.put(`http://localhost:5000/admin/request/${user_id}&${job_id}`, {
-      response: "approved",
-    });
+    axios
+      .put(`http://localhost:5000/admin/request/${user_id}&${job_id}`, {
+        response: "approved",
+      })
+      .then((res) => {
+        alert(res.data.msg);
+      });
   };
   const decline = (e, job_id, user_id) => {
     e.preventDefault();
-    axios.put(`http://localhost:5000/admin/request/${user_id}&${job_id}`, {
-      response: "declined",
-    });
+    axios
+      .put(`http://localhost:5000/admin/request/${user_id}&${job_id}`, {
+        response: "declined",
+      })
+      .then((res) => alert(res.data.msg));
   };
 
   const renderUsers = () => {

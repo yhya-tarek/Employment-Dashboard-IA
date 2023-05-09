@@ -54,6 +54,7 @@ export default function Pop() {
                 {" "}
                 Qualification Id
                 <input
+                  required
                   id="inp"
                   ref={enteredvalue}
                   name="qualificationId"

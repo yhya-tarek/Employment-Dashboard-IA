@@ -63,10 +63,10 @@ const Find = () => {
           .then((response) => {
             if (response) {
               console.log(response);
-              alert("your request is successfully sent to the admin xD");
+              alert(response.data.msg);
             }
           })
-          .catch((err) => console.log("you have already requested this job"));
+          .catch((err) => alert(err.response.data.msg));
       } else {
         navigate("/login");
       }

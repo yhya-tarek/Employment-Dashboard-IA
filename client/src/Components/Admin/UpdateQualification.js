@@ -129,6 +129,7 @@ export default function Pop() {
 
                 <label> Qualification</label>
                 <textarea
+                  required
                   name="qualification"
                   value={qualification}
                   type="text-area"
@@ -138,6 +139,7 @@ export default function Pop() {
                 ></textarea>
                 <label> Qualification Description</label>
                 <textarea
+                  required
                   name="qualification_desc"
                   value={qualification_desc}
                   type="text-area"

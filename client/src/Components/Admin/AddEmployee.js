@@ -62,6 +62,7 @@ export default function Pop() {
                 {" "}
                 name
                 <input
+                  required
                   id="inp"
                   value={name}
                   name="name"
@@ -74,6 +75,7 @@ export default function Pop() {
                 {" "}
                 password
                 <input
+                  required
                   id="inp"
                   value={password}
                   name="password"
@@ -85,6 +87,7 @@ export default function Pop() {
                 {" "}
                 Email
                 <input
+                  required
                   id="inp"
                   value={Email}
                   name="Email"
@@ -93,6 +96,7 @@ export default function Pop() {
                 ></input>
               </label>
               <input
+                required
                 value={image_url}
                 id="inp"
                 name="image_url"
@@ -104,6 +108,7 @@ export default function Pop() {
                 {" "}
                 Mobile number
                 <input
+                  required
                   id="inp"
                   value={phone}
                   name="phone"
@@ -115,6 +120,7 @@ export default function Pop() {
                 {" "}
                 Skills
                 <input
+                  required
                   value={skill}
                   id="inp"
                   name="skill"
@@ -124,6 +130,7 @@ export default function Pop() {
               </label>
               <label> Bio</label>
               <textarea
+                required
                 value={bio}
                 name="bio"
                 id="inp"
@@ -136,6 +143,7 @@ export default function Pop() {
                 {" "}
                 type
                 <input
+                  required
                   id="inp"
                   value={type}
                   name="type"
@@ -147,6 +155,7 @@ export default function Pop() {
                 {" "}
                 status
                 <input
+                  required
                   id="inp"
                   value={status}
                   name="status"

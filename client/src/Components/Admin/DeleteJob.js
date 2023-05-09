@@ -52,6 +52,7 @@ export default function Pop() {
                 {" "}
                 job id
                 <input
+                  required
                   id="inp"
                   name="job_id"
                   value={job_id}

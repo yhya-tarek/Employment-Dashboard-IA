@@ -55,6 +55,7 @@ export default function Pop() {
                 {" "}
                 employee id
                 <input
+                  required
                   id="inp"
                   ref={enteredvalue}
                   name="user_id"

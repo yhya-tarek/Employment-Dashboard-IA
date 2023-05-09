@@ -35,7 +35,9 @@ module.exports = {
         ];
         connection.query(sql, [values], (err, data) => {
           if (err) return res.json(err);
-          return res.status(201).json(data);
+          return res
+            .status(201)
+            .json({ msg: "The request has been sent successfully" });
         });
       } else {
         return res
