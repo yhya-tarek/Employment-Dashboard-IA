@@ -6,6 +6,7 @@ import axios from "axios";
 // import { updateJob } from "../../../../server/controllers/jobscontroller";
 export default function Pop() {
   const [error, setError] = useState("");
+  const [qualifications, setQualifications] = useState("");
   const [addjob, setAddjob] = useState({
     jobId: "",
     position: "",
@@ -54,6 +55,7 @@ export default function Pop() {
           axios.get("http://localhost:5000/qualifications").then((response) => {
             if (response.data) {
               const qual = [];
+              const qu = [];
               qual.push(
                 response.data.filter((value) => {
                   if (value.job_id === parseInt(addjob.jobId)) {
@@ -62,10 +64,8 @@ export default function Pop() {
                   return false;
                 })
               );
-              setAddjob({
-                ...addjob,
-                qualification: qual[0][0].qualification,
-              });
+              qual[0].forEach((elem) => qu.push(elem.qualification));
+              setQualifications(qu.join(","));
             }
           });
           setError("");
@@ -75,6 +75,7 @@ export default function Pop() {
             Description: res.data[0].Description,
             offer: res.data[0].offer,
             max_candidate_number: res.data[0].max_candidate_number,
+            qualification: qualifications,
           });
         }
       })
